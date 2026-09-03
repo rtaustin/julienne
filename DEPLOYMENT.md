@@ -12,41 +12,47 @@ These are already set in `netlify.toml`, so nothing needs configuring by hand.
 
 ## Getting the CMS working in production
 
-Keystatic runs in **local** mode during development (no login, edits the files
-directly) and in **GitHub** mode on the live site. GitHub mode needs a GitHub App so
-edits can be committed on the editor's behalf. Until it is configured, `/keystatic`
-shows a "Sign in with GitHub" button that returns **HTTP 500** — that is the missing
-configuration, not a broken deploy or a missing custom domain.
+Keystatic runs in **local** mode during development (no login, edits files directly)
+and in **Keystatic Cloud** mode on the live site, so Julienne signs in with an email
+address rather than needing a GitHub account. The Hobby tier is free for one editor
+and one repo.
+
+Until the cloud project exists, `/keystatic` on the live site will not sign in.
 
 ### Setup
 
-1. Visit `/keystatic/setup` on the live site. The wizard creates the GitHub App and
-   prints the values below.
-2. Add all four in Netlify under **Site configuration → Environment variables**:
+1. Create a project at https://keystatic.cloud and link it to `rtaustin/julienne`.
+2. Put the identifier it gives you — `team-slug/project-slug` — into `CLOUD_PROJECT`
+   at the top of `keystatic.config.ts`, replacing the placeholder.
+3. Invite Julienne as the editor.
+4. Commit and push. No environment variables are needed.
+
+Richard does not need a cloud seat: editing the repo directly is the same thing, and
+the free tier only covers one editor.
+
+### Fallback: GitHub storage mode
+
+Free, unlimited editors, but every editor needs a GitHub account and repo access.
+To switch, set `storage` back to
+`{ kind: 'github', repo: { owner: 'rtaustin', name: 'julienne' } }`, drop the `cloud`
+key, and set these in Netlify under **Site configuration → Environment variables**:
 
 | Variable | Notes |
 | --- | --- |
-| `KEYSTATIC_GITHUB_CLIENT_ID` | from the wizard |
-| `KEYSTATIC_GITHUB_CLIENT_SECRET` | from the wizard — secret |
-| `KEYSTATIC_SECRET` | from the wizard — random string, signs the session cookie |
-| `PUBLIC_KEYSTATIC_GITHUB_APP_SLUG` | the app's slug, e.g. `julienne-blackburn-cms` |
+| `KEYSTATIC_GITHUB_CLIENT_ID` | from the GitHub App |
+| `KEYSTATIC_GITHUB_CLIENT_SECRET` | from the GitHub App — secret |
+| `KEYSTATIC_SECRET` | random string, signs the session cookie |
+| `PUBLIC_KEYSTATIC_GITHUB_APP_SLUG` | the app's slug |
 
-   The first three are read at request time. The fourth is `PUBLIC_`, so it is baked
-   in **at build time** — after setting it you must trigger a fresh deploy, not just
-   restart. Setting the vars alone changes nothing until the site rebuilds.
+The last one is `PUBLIC_`, so it is inlined at build time — setting it does nothing
+until the site rebuilds.
 
-3. Redeploy. `/keystatic` will then sign in properly.
-
-The repo Keystatic writes to is set in `keystatic.config.ts` (`rtaustin/julienne`).
-Update it if the repo moves.
-
-### Alternative: Keystatic Cloud
-
-Keystatic Cloud replaces the GitHub login with an email login, so a non-technical
-editor never needs a GitHub account. The Hobby tier is free for one editor and one
-repo. To switch, create a project at keystatic.cloud and change the `storage` block
-in `keystatic.config.ts` to `{ kind: 'cloud' }` with the `cloud.project` name — the
-GitHub env vars above are then unnecessary.
+> **Run the `/keystatic/setup` wizard locally, never on the deployed site.** After
+> creating the GitHub App it writes the credentials to a `.env` file. Netlify's
+> filesystem is read-only, so that write throws a 500 and the client secret — shown
+> only once — is lost, leaving an orphaned GitHub App behind. Run it against a local
+> dev server with `storage` temporarily forced to `github`, then copy the values out
+> of the generated `.env` into Netlify.
 
 ## Forms
 

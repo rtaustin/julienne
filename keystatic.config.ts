@@ -3,12 +3,25 @@ import { config, fields, collection, singleton } from '@keystatic/core';
 /**
  * Keystatic CMS — this is what powers the editor at /keystatic.
  *
- * Locally it reads and writes the files in this folder directly.
- * In production it talks to GitHub, so every save Julienne makes becomes a
- * commit on `main`, which Netlify picks up and redeploys automatically.
+ * Locally it reads and writes the files in this folder directly, with no login.
+ * In production it runs through Keystatic Cloud: Julienne signs in with an email
+ * address, and every save becomes a commit on `main`, which Netlify picks up and
+ * redeploys automatically.
  */
 
 const isDev = process.env.NODE_ENV === 'development';
+
+/**
+ * Keystatic Cloud project, as "team-slug/project-slug".
+ *
+ * Create it at https://keystatic.cloud and link it to the rtaustin/julienne
+ * repo, then paste the identifier it gives you here. Cloud storage is what
+ * lets Julienne sign in with an email address instead of needing a GitHub
+ * account; the Hobby tier is free for one editor.
+ *
+ * TODO: replace this placeholder with the real project identifier.
+ */
+const CLOUD_PROJECT = 'REPLACE-ME/julienne-blackburn-coaching';
 
 const richText = (label: string) =>
   fields.markdoc({
@@ -24,12 +37,10 @@ const richText = (label: string) =>
   });
 
 export default config({
-  storage: isDev
-    ? { kind: 'local' }
-    : {
-        kind: 'github',
-        repo: { owner: 'rtaustin', name: 'julienne' },
-      },
+  // Local mode in development edits these files directly, with no login.
+  // In production, Keystatic Cloud handles sign-in and commits to GitHub.
+  storage: isDev ? { kind: 'local' } : { kind: 'cloud' },
+  cloud: { project: CLOUD_PROJECT },
 
   ui: {
     brand: { name: 'Julienne Blackburn Coaching' },
