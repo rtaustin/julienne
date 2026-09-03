@@ -5,4 +5,4 @@ Disallow: /api/keystatic
 Disallow: /thank-you
 Disallow: /handbook
 
-Sitemap: https://julienneblackburn.com/sitemap.xml
+Sitemap: https://julienneblackburn.netlify.app/sitemap.xml

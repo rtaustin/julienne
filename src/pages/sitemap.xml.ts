@@ -19,7 +19,7 @@ const staticPaths = [
 ];
 
 export const GET: APIRoute = async ({ site }) => {
-  const origin = (site ?? new URL('https://julienneblackburn.com')).origin;
+  const origin = (site ?? new URL('https://julienneblackburn.netlify.app')).origin;
 
   const [prayers, sunshine, gallery] = await Promise.all([
     getCollection('prayers', ({ data }) => !data.draft),

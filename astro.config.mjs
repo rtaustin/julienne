@@ -7,8 +7,9 @@ import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
-  // Update this once the real domain is connected in Netlify.
-  site: 'https://julienneblackburn.com',
+  // The live Netlify address. Change this to the custom domain the day it is
+  // connected — it sets canonical URLs, Open Graph tags and the sitemap.
+  site: 'https://julienneblackburn.netlify.app',
   output: 'static',
   adapter: netlify({
     devFeatures: {

@@ -160,10 +160,27 @@
     color: #c3ccd4;
     font-size: 1.03rem;
   }
-  .masthead .meta {
-    margin-top: 2.2rem;
-    padding-top: 1.2rem;
+  .masthead .live {
+    margin: 2.2rem 0 0;
+    padding-top: 1.4rem;
     border-top: 1px solid rgb(255 255 255 / .12);
+    max-width: none;
+    font-size: 1rem;
+    color: #c3ccd4;
+  }
+  .masthead .live a {
+    font-family: var(--heading);
+    font-weight: 600;
+    color: var(--gold);
+    text-decoration: underline;
+    text-decoration-color: rgb(194 164 109 / .45);
+    text-underline-offset: 4px;
+    overflow-wrap: anywhere;
+  }
+  .masthead .live a:hover { text-decoration-color: var(--gold); }
+  .masthead .live span { color: #8ea0af; }
+  .masthead .meta {
+    margin-top: 1.1rem;
     font-family: var(--heading);
     font-size: .7rem;
     letter-spacing: .13em;
@@ -433,6 +450,11 @@
       choices that need your name, your money, or your judgment — nobody else can make them for you.
       This walks through each one.
     </p>
+    <p class="live">
+      Your site is live now at
+      <a href="https://julienneblackburn.netlify.app/">julienneblackburn.netlify.app</a>
+      <span>— a temporary address until you buy your own</span>
+    </p>
     <p class="meta">Prepared for Julienne &middot; September 2026</p>
   </div>
 </header>
@@ -444,7 +466,9 @@
     <h2>What is already built</h2>
     <p class="lede">
       Everything on your list has a home. Some pages are waiting on content from you, and they say so
-      gracefully rather than looking broken.
+      gracefully rather than looking broken. Open
+      <a href="https://julienneblackburn.netlify.app/">julienneblackburn.netlify.app</a> and click
+      through it as you read this.
     </p>
     <ul class="facts">
       <li><span class="k">Home</span><span class="v">Your photo, the specialization line about Cluster B abuse, three ways to work with you, and the free resources.</span></li>
@@ -711,8 +735,10 @@
     <p class="kicker">How it works</p>
     <h2>Changing your own website</h2>
     <p class="lede">
-      You have an editor at <code>yoursite.com/keystatic</code>. It looks like a form. You fill it in,
-      press Save, and the website updates itself a minute later. No code, and nothing you can break.
+      You have an editor at
+      <a href="https://julienneblackburn.netlify.app/keystatic">julienneblackburn.netlify.app/keystatic</a>.
+      It looks like a form. You fill it in, press Save, and the website updates itself a minute
+      later. No code, and nothing you can break.
     </p>
 
     <ol class="steps">
@@ -720,7 +746,7 @@
         <span class="n">1</span>
         <div class="body">
           <h3>Sign in</h3>
-          <p>Go to your site address followed by <code>/keystatic</code> — so <code>yoursite.com/keystatic</code> — and sign in. Bookmark that page; it is the only address you need.</p>
+          <p>Go to <code>julienneblackburn.netlify.app/keystatic</code> and sign in. Bookmark that page; it is the only address you need. When your own domain is connected, the editor moves with it — same page, shorter address.</p>
         </div>
       </li>
       <li>

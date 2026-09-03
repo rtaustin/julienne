@@ -16,6 +16,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 const { prayer } = Astro.props;
 const { Content } = await render(prayer);
+const siteHost = (Astro.site ?? new URL(Astro.url.origin)).host;
 ---
 
 <Base title={prayer.data.title} description={prayer.data.summary ?? `A free printable prayer from ${site.name}.`}>
@@ -60,7 +61,7 @@ const { Content } = await render(prayer);
     </p>
 
     <p class="mt-10 hidden text-center text-xs text-navy-600 print:block">
-      {site.name} &middot; julienneblackburn.com
+      {site.name} &middot; {siteHost}
     </p>
   </article>
 </Base>
