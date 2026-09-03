@@ -19,22 +19,16 @@ const isActive = (href: string) => path === href || path.startsWith(href + '/');
 
 <header class="no-print sticky top-0 z-50 border-b border-navy-800/8 bg-cream/95 backdrop-blur">
   <div class="container-page flex items-center justify-between gap-4 py-3">
-    <a href="/" class="flex shrink-0 items-center gap-3" aria-label={`${site.name} — home`}>
+    <a href="/" class="flex shrink-0 items-center" aria-label={`${site.name} — home`}>
       <img
-        src="/images/brand/logo-mark.png"
-        alt=""
-        width="48"
-        height="48"
-        class="h-11 w-11 object-contain"
+        src="/images/brand/logo-wide.png"
+        alt={`${site.shortName} — ${site.role}`}
+        width="722"
+        height="132"
+        class="h-10 w-auto sm:h-11 lg:h-12"
+        loading="eager"
+        decoding="async"
       />
-      <span class="leading-tight">
-        <span class="block font-heading text-[0.95rem] font-semibold tracking-[0.09em] text-navy-900 uppercase">
-          Julienne Blackburn
-        </span>
-        <span class="block text-[0.62rem] font-medium tracking-[0.2em] text-green-700 uppercase">
-          {site.role}
-        </span>
-      </span>
     </a>
 
     <nav class="hidden items-center gap-6 lg:flex" aria-label="Main">
