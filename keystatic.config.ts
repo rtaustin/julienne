@@ -19,9 +19,10 @@ const isDev = process.env.NODE_ENV === 'development';
  * lets Julienne sign in with an email address instead of needing a GitHub
  * account; the Hobby tier is free for one editor.
  *
- * TODO: replace this placeholder with the real project identifier.
+ * Must match the team and project slugs on keystatic.cloud exactly — a mismatch
+ * shows up as a sign-in failure at /keystatic with nothing obviously wrong.
  */
-const CLOUD_PROJECT = 'REPLACE-ME/julienne-blackburn-coaching';
+const CLOUD_PROJECT = 'julienne-blackburn/website';
 
 const richText = (label: string) =>
   fields.markdoc({
