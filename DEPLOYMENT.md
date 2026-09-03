@@ -24,8 +24,16 @@ Until the cloud project exists, `/keystatic` on the live site will not sign in.
 1. Create a project at https://keystatic.cloud and link it to `rtaustin/julienne`.
 2. Put the identifier it gives you — `team-slug/project-slug` — into `CLOUD_PROJECT`
    at the top of `keystatic.config.ts`, replacing the placeholder.
-3. Invite Julienne as the editor.
-4. Commit and push. No environment variables are needed.
+3. Under **Project URLs**, set the Primary URL to where the site is deployed —
+   currently `https://julienneblackburn.netlify.app`. This is an allowlist: sign-in
+   only works from a URL listed here.
+4. Invite Julienne as the editor.
+5. Commit and push. No environment variables are needed.
+
+> **When the custom domain is connected**, go back to the Keystatic Cloud project and
+> add it under Project URLs with **+ Add**. Miss this and `/keystatic` stops signing
+> in the moment the domain goes live, with no clue as to why. Keep the netlify.app
+> URL in the list too — deploy previews and the fallback address still use it.
 
 Richard does not need a cloud seat: editing the repo directly is the same thing, and
 the free tier only covers one editor.
