@@ -1,0 +1,55 @@
+{
+  "eyebrow": "Working together",
+  "heading": "Break free from the cycle of abuse and rediscover yourself.",
+  "intro": "Two ways to work with me. Start wherever feels possible right now — you can always add the other later.",
+  "oneOnOne": {
+    "title": "One-on-One Coaching",
+    "summary": "Private sessions, entirely yours. We meet by video or phone, and we work on what is actually in front of you.",
+    "includes": [
+      "Naming the pattern you are living inside, in plain language",
+      "Boundaries you can hold up under pressure, not just in theory",
+      "Untangling what was you from what was done to you",
+      "Practical planning for the hard conversations and decisions ahead",
+      "Prayer and deliverance ministry, if and when you want it"
+    ],
+    "goodFor": "People recovering from narcissistic, borderline, psychopathic, and other Cluster B abuse — in a marriage, a family, a workplace, or a church.",
+    "ctaLabel": "Book a one-on-one session",
+    "ctaHref": "/schedule"
+  },
+  "groups": {
+    "title": "Small Group Sessions",
+    "summary": "A monthly group for survivors of abuse, capped at ten people so it stays intimate and safe.",
+    "includes": [
+      "Ten seats only, so everyone has room to speak",
+      "A closed, confidential circle — what is said here stays here",
+      "A teaching each month, then open time to talk it through",
+      "Meets by video, so you can attend from wherever you feel safest"
+    ],
+    "goodFor": "Anyone who is tired of carrying this alone, and who is ready to sit with people who already understand without having to explain.",
+    "ctaLabel": "Request a group seat",
+    "ctaHref": "/schedule#groups"
+  },
+  "faqHeading": "Before you book",
+  "faq": [
+    {
+      "q": "Is coaching the same as therapy?",
+      "a": "No. Therapy treats mental health conditions and looks backward to heal them; a licensed therapist is trained and regulated to do that. Coaching is forward-looking — we work on what you are deciding, saying, and doing next. Many of my clients see a therapist and work with me at the same time, and that combination works well. If what you need is clinical care, I will say so directly and help you find it."
+    },
+    {
+      "q": "What does 'trauma-informed' actually mean here?",
+      "a": "It means the work is built around not re-traumatizing you. You are never required to retell the worst of it to be taken seriously. You control what gets discussed and when, and if something is too much on a given day, we stop. Safety comes before progress, every time."
+    },
+    {
+      "q": "Do I have to want the faith part?",
+      "a": "No. Prayer, deliverance, and ministry are offered because many people specifically come to me for them. They are never a condition of working with me, and declining them changes nothing about the care you get."
+    },
+    {
+      "q": "What if I am still in the relationship?",
+      "a": "Many people are. You do not have to have left, and you will not be pressured to leave on anyone's timeline but your own. If you are in physical danger, safety planning comes first — and I will point you to people trained specifically for that."
+    },
+    {
+      "q": "How do I pay?",
+      "a": "Zelle, PayPal, or Venmo. Details are on the payment page, and I will confirm everything with you before your first session."
+    }
+  ]
+}

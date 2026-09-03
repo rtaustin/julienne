@@ -1,0 +1,66 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import Icon from '../../components/Icon.astro';
+import { getCollection, render } from 'astro:content';
+import { formatDate, sortByDateDesc } from '../../lib/format';
+
+const entries = sortByDateDesc(await getCollection('testimonies', ({ data }) => data.approved));
+const rendered = await Promise.all(
+  entries.map(async (entry) => ({ entry, Content: (await render(entry)).Content }))
+);
+---
+
+<Base
+  title="Testimonies"
+  description="Stories from people who have worked through abuse and found healing on the other side of it."
+>
+  <PageHero
+    eyebrow="In their own words"
+    heading="Testimonies"
+    intro="Healing is hard to believe in until you have watched someone else do it. These are the stories of people who did — told in their own words, at whatever level of privacy they asked for."
+  >
+    <div class="mt-8">
+      <a href="/testimonies/share" class="btn btn-primary">
+        Share your story
+        <Icon name="arrow" class="h-4 w-4" />
+      </a>
+    </div>
+  </PageHero>
+
+  <section class="container-page py-16 sm:py-20">
+    {rendered.length === 0 ? (
+      <div class="mx-auto max-w-2xl rounded-2xl border border-dashed border-gold-500/60 bg-gold-100/50 p-8 text-center">
+        <p class="font-heading text-base font-semibold text-navy-900">
+          The first testimonies are being gathered.
+        </p>
+        <p class="mx-auto mt-3 max-w-md leading-relaxed text-navy-700">
+          If you have come through something and want to help the next person believe it is
+          possible, your story is welcome here.
+        </p>
+        <a href="/testimonies/share" class="btn btn-primary mt-6">Share your story</a>
+      </div>
+    ) : (
+      <div class="mx-auto grid max-w-4xl gap-8">
+        {rendered.map(({ entry, Content }) => (
+          <article class="card p-8 sm:p-10">
+            <h2 class="font-display text-2xl leading-snug text-navy-900 sm:text-3xl">
+              &ldquo;{entry.data.headline}&rdquo;
+            </h2>
+            <hr class="rule-gold mt-5" />
+            <div class="prose prose-brand mt-7 max-w-none">
+              <Content />
+            </div>
+            <p class="mt-8 font-heading text-xs font-semibold tracking-[0.14em] text-gold-700 uppercase">
+              {entry.data.name}
+              {entry.data.location ? ` · ${entry.data.location}` : ''}
+              <span class="ml-2 font-normal tracking-normal text-navy-600 normal-case">
+                {formatDate(entry.data.date)}
+              </span>
+            </p>
+          </article>
+        ))}
+      </div>
+    )}
+  </section>
+</Base>

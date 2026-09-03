@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /keystatic
+Disallow: /api/keystatic
+Disallow: /thank-you
+
+Sitemap: https://julienneblackburn.com/sitemap.xml

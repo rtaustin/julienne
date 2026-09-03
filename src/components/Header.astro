@@ -1,0 +1,108 @@
+---
+import Icon from './Icon.astro';
+import site from '../data/site.json';
+
+const nav = [
+  { label: 'About', href: '/about' },
+  { label: 'Coaching', href: '/coaching' },
+  { label: 'Prayers', href: '/prayers' },
+  { label: 'Videos', href: '/videos' },
+  { label: 'Sunshine', href: '/sunshine' },
+  { label: 'Gallery', href: '/gallery' },
+  { label: 'Testimonies', href: '/testimonies' },
+  { label: 'Contact', href: '/contact' },
+];
+
+const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+const isActive = (href: string) => path === href || path.startsWith(href + '/');
+---
+
+<header class="no-print sticky top-0 z-50 border-b border-navy-800/8 bg-cream/95 backdrop-blur">
+  <div class="container-page flex items-center justify-between gap-4 py-3">
+    <a href="/" class="flex shrink-0 items-center gap-3" aria-label={`${site.name} — home`}>
+      <img
+        src="/images/brand/logo-mark.png"
+        alt=""
+        width="48"
+        height="48"
+        class="h-11 w-11 object-contain"
+      />
+      <span class="leading-tight">
+        <span class="block font-heading text-[0.95rem] font-semibold tracking-[0.09em] text-navy-900 uppercase">
+          Julienne Blackburn
+        </span>
+        <span class="block text-[0.62rem] font-medium tracking-[0.2em] text-green-700 uppercase">
+          {site.role}
+        </span>
+      </span>
+    </a>
+
+    <nav class="hidden items-center gap-6 lg:flex" aria-label="Main">
+      {nav.map((item) => (
+        <a
+          href={item.href}
+          aria-current={isActive(item.href) ? 'page' : undefined}
+          class:list={[
+            'font-heading text-[0.8rem] font-medium tracking-[0.04em] transition-colors',
+            isActive(item.href)
+              ? 'text-green-700'
+              : 'text-navy-700 hover:text-green-700',
+          ]}
+        >
+          {item.label}
+        </a>
+      ))}
+      <a href="/schedule" class="btn btn-gold whitespace-nowrap">Book a Session</a>
+    </nav>
+
+    <button
+      type="button"
+      id="nav-toggle"
+      class="inline-flex items-center gap-2 rounded-full border border-navy-800/20 px-4 py-2 font-heading text-xs font-semibold tracking-[0.08em] text-navy-800 uppercase lg:hidden"
+      aria-expanded="false"
+      aria-controls="mobile-nav"
+    >
+      <Icon name="menu" class="h-4 w-4" />
+      Menu
+    </button>
+  </div>
+
+  <div id="mobile-nav" hidden class="border-t border-navy-800/8 bg-cream lg:hidden">
+    <nav class="container-page flex flex-col py-3" aria-label="Main, mobile">
+      {nav.map((item) => (
+        <a
+          href={item.href}
+          aria-current={isActive(item.href) ? 'page' : undefined}
+          class:list={[
+            'border-b border-navy-800/6 py-3 font-heading text-sm font-medium',
+            isActive(item.href) ? 'text-green-700' : 'text-navy-800',
+          ]}
+        >
+          {item.label}
+        </a>
+      ))}
+      <a href="/schedule" class="btn btn-gold mt-4 mb-2">Book a Session</a>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const toggle = document.getElementById('nav-toggle');
+  const panel = document.getElementById('mobile-nav');
+
+  if (toggle && panel) {
+    toggle.addEventListener('click', () => {
+      const open = toggle.getAttribute('aria-expanded') === 'true';
+      toggle.setAttribute('aria-expanded', String(!open));
+      panel.hidden = open;
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true') {
+        toggle.setAttribute('aria-expanded', 'false');
+        panel.hidden = true;
+        toggle.focus();
+      }
+    });
+  }
+</script>

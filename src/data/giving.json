@@ -1,0 +1,13 @@
+{
+  "eyebrow": "Payment",
+  "heading": "Paying for your session",
+  "intro": "Payment is due before your session. Any of the three below is fine — use whichever you already have. Please include your name in the note so I can match it to your appointment.",
+  "methods": [
+    { "name": "Venmo", "handle": "", "url": "", "note": "Include your name in the payment note.", "enabled": false },
+    { "name": "PayPal", "handle": "", "url": "", "note": "Please send as 'Friends and Family' if you are able.", "enabled": false },
+    { "name": "Zelle", "handle": "", "url": "", "note": "Send through your own bank's app using the email or phone number above.", "enabled": false }
+  ],
+  "footnote": "If cost is the only thing standing between you and getting help, say so on the contact page. We will work something out.",
+  "supportHeading": "Supporting the free resources",
+  "supportBody": "The prayers, videos, and the Sunshine page stay free for everyone, always. If you would like to help keep them that way, a gift through any of the methods above — marked 'gift' — goes directly toward that."
+}

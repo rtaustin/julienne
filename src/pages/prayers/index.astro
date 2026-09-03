@@ -1,0 +1,84 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import Icon from '../../components/Icon.astro';
+import { getCollection } from 'astro:content';
+import { formatDate, sortByDateDesc } from '../../lib/format';
+
+const prayers = sortByDateDesc(await getCollection('prayers', ({ data }) => !data.draft));
+const categories = [...new Set(prayers.map((p) => p.data.category))].sort();
+---
+
+<Base
+  title="Deliverance Prayers"
+  description="Free deliverance, protection, and healing prayers — read them here or print them off at no cost."
+>
+  <PageHero
+    eyebrow="Free to read, free to print"
+    heading="Deliverance Prayers"
+    intro="These are written as God gives them. Every one of them is free. Read them here, or print them and keep them somewhere you will find them again."
+  />
+
+  <section class="container-page py-16 sm:py-20">
+    {prayers.length === 0 ? (
+      <div class="mx-auto max-w-2xl rounded-2xl border border-dashed border-gold-500/60 bg-gold-100/50 p-8 text-center">
+        <p class="font-heading text-base font-semibold text-navy-900">
+          The first prayers are on their way.
+        </p>
+        <p class="mx-auto mt-3 max-w-md leading-relaxed text-navy-700">
+          Check back soon — or send a prayer request and Julienne will pray with you directly.
+        </p>
+        <a href="/contact" class="btn btn-primary mt-6">Send a prayer request</a>
+      </div>
+    ) : (
+      <>
+        {categories.length > 1 && (
+          <p class="mb-10 flex flex-wrap items-center gap-2 text-sm">
+            <span class="font-heading text-xs font-semibold tracking-[0.14em] text-navy-600 uppercase">
+              Categories:
+            </span>
+            {categories.map((category) => (
+              <span class="rounded-full bg-green-100 px-3 py-1 text-xs font-semibold text-green-900">
+                {category}
+              </span>
+            ))}
+          </p>
+        )}
+
+        <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {prayers.map((prayer) => (
+            <article class="card card-link flex flex-col p-7">
+              <p class="font-heading text-[0.68rem] font-semibold tracking-[0.16em] text-gold-700 uppercase">
+                {prayer.data.category}
+              </p>
+              <h2 class="mt-3 font-display text-2xl leading-snug text-navy-900">
+                <a href={`/prayers/${prayer.id}/`} class="after:absolute after:inset-0 after:content-[''] hover:text-green-700">
+                  {prayer.data.title}
+                </a>
+              </h2>
+              {prayer.data.scripture && (
+                <p class="mt-2 text-sm text-slate-500 italic">{prayer.data.scripture}</p>
+              )}
+              {prayer.data.summary && (
+                <p class="mt-4 grow text-[0.95rem] leading-relaxed text-navy-700">
+                  {prayer.data.summary}
+                </p>
+              )}
+              <p class="mt-6 flex items-center gap-2 font-heading text-sm font-semibold text-green-700">
+                Read and print
+                <Icon name="arrow" class="h-4 w-4" />
+              </p>
+              <p class="mt-3 text-xs text-navy-600">{formatDate(prayer.data.date)}</p>
+            </article>
+          ))}
+        </div>
+      </>
+    )}
+  </section>
+</Base>
+
+<style>
+  article.card {
+    position: relative;
+  }
+</style>

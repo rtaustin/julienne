@@ -1,0 +1,272 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+/* ------------------------------------------------------------------
+   Julienne Blackburn Coaching — brand tokens
+   Palette from the approved brand board: navy, green, gold, slate, off-white
+   ------------------------------------------------------------------ */
+@theme {
+  --color-navy-900: #16202b;
+  --color-navy-800: #1e2a38;
+  --color-navy-700: #2b3b4d;
+  --color-navy-600: #3d5166;
+
+  --color-green-900: #14523f;
+  --color-green-700: #1f7a63;
+  --color-green-500: #2f9b80;
+  --color-green-100: #e3efe9;
+
+  --color-gold-700: #a3854f;
+  --color-gold-500: #c2a46d;
+  --color-gold-300: #dcc79c;
+  --color-gold-100: #f3ead9;
+
+  --color-slate-500: #6c8ea4;
+  --color-slate-200: #cfdde5;
+
+  --color-cream: #f8f9fa;
+  --color-cream-warm: #fbf8f3;
+
+  --font-display: "Cormorant Garamond", "Iowan Old Style", Georgia, serif;
+  --font-heading: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+  --font-body: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+
+  --shadow-soft: 0 1px 2px rgb(30 42 56 / 0.04), 0 8px 24px -12px rgb(30 42 56 / 0.18);
+  --shadow-lift: 0 2px 4px rgb(30 42 56 / 0.05), 0 18px 40px -20px rgb(30 42 56 / 0.28);
+}
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  body {
+    background-color: var(--color-cream);
+    color: var(--color-navy-800);
+    font-family: var(--font-body);
+    font-size: 1.0625rem;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-heading);
+    color: var(--color-navy-900);
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+  }
+
+  p { text-wrap: pretty; }
+
+  :focus-visible {
+    outline: 3px solid var(--color-gold-500);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+}
+
+@layer components {
+  .container-page {
+    width: 100%;
+    max-width: 72rem;
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+  }
+  @media (min-width: 768px) {
+    .container-page { padding-inline: 2rem; }
+  }
+
+  .container-prose {
+    width: 100%;
+    max-width: 46rem;
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+  }
+
+  /* Small caps label above a section heading */
+  .eyebrow {
+    font-family: var(--font-heading);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-gold-700);
+  }
+
+  .section-title {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: clamp(1.9rem, 1.2rem + 2.4vw, 2.9rem);
+    line-height: 1.15;
+    letter-spacing: 0;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border-radius: 999px;
+    padding: 0.8rem 1.6rem;
+    font-family: var(--font-heading);
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    line-height: 1;
+    text-align: center;
+    transition: background-color 180ms ease, color 180ms ease,
+                border-color 180ms ease, transform 180ms ease, box-shadow 180ms ease;
+  }
+  .btn:hover { transform: translateY(-1px); }
+
+  .btn-primary {
+    background-color: var(--color-green-700);
+    color: #fff;
+    box-shadow: var(--shadow-soft);
+  }
+  .btn-primary:hover { background-color: var(--color-green-900); }
+
+  .btn-gold {
+    background-color: var(--color-gold-500);
+    color: var(--color-navy-900);
+    box-shadow: var(--shadow-soft);
+  }
+  .btn-gold:hover { background-color: var(--color-gold-300); }
+
+  .btn-outline {
+    border: 1.5px solid color-mix(in oklab, var(--color-navy-800) 30%, transparent);
+    color: var(--color-navy-800);
+  }
+  .btn-outline:hover {
+    border-color: var(--color-navy-800);
+    background-color: color-mix(in oklab, var(--color-navy-800) 5%, transparent);
+  }
+
+  .btn-on-dark {
+    border: 1.5px solid color-mix(in oklab, #fff 45%, transparent);
+    color: #fff;
+  }
+  .btn-on-dark:hover { background-color: color-mix(in oklab, #fff 12%, transparent); }
+
+  .card {
+    background-color: #fff;
+    border: 1px solid color-mix(in oklab, var(--color-navy-800) 8%, transparent);
+    border-radius: 1rem;
+    box-shadow: var(--shadow-soft);
+    transition: box-shadow 200ms ease, transform 200ms ease;
+  }
+  .card-link:hover {
+    box-shadow: var(--shadow-lift);
+    transform: translateY(-2px);
+  }
+
+  /* Thin gold rule used as a divider under headings */
+  .rule-gold {
+    display: block;
+    width: 3.5rem;
+    height: 2px;
+    background-color: var(--color-gold-500);
+    border: 0;
+  }
+
+
+  /* Forms */
+  .field { display: block; margin-bottom: 1.25rem; }
+
+  .field-label {
+    display: block;
+    margin-bottom: 0.4rem;
+    font-family: var(--font-heading);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--color-navy-900);
+  }
+
+  .field-hint {
+    display: block;
+    margin-top: -0.15rem;
+    margin-bottom: 0.5rem;
+    font-size: 0.82rem;
+    line-height: 1.5;
+    color: var(--color-navy-600);
+  }
+
+  .field-input {
+    display: block;
+    width: 100%;
+    border-radius: 0.7rem;
+    border: 1px solid color-mix(in oklab, var(--color-navy-800) 18%, transparent);
+    background-color: #fff;
+    padding: 0.7rem 0.9rem;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    color: var(--color-navy-900);
+    transition: border-color 160ms ease, box-shadow 160ms ease;
+  }
+  .field-input::placeholder { color: color-mix(in oklab, var(--color-navy-800) 40%, transparent); }
+  .field-input:focus {
+    border-color: var(--color-green-700);
+    box-shadow: 0 0 0 3px color-mix(in oklab, var(--color-green-700) 18%, transparent);
+    outline: none;
+  }
+  textarea.field-input { min-height: 9rem; resize: vertical; }
+
+  .field-checkbox {
+    display: flex;
+    gap: 0.7rem;
+    align-items: flex-start;
+    font-size: 0.92rem;
+    line-height: 1.55;
+    color: var(--color-navy-700);
+  }
+  .field-checkbox input {
+    margin-top: 0.25rem;
+    width: 1.05rem;
+    height: 1.05rem;
+    accent-color: var(--color-green-700);
+    flex-shrink: 0;
+  }
+
+  .prose-brand {
+    --tw-prose-body: var(--color-navy-700);
+    --tw-prose-headings: var(--color-navy-900);
+    --tw-prose-links: var(--color-green-700);
+    --tw-prose-bold: var(--color-navy-900);
+    --tw-prose-quotes: var(--color-navy-800);
+    --tw-prose-quote-borders: var(--color-gold-500);
+    --tw-prose-bullets: var(--color-gold-500);
+    --tw-prose-counters: var(--color-gold-700);
+  }
+}
+
+/* ------------------------------------------------------------------
+   Print — used by the free printable prayers
+   ------------------------------------------------------------------ */
+@media print {
+  .no-print { display: none !important; }
+  body {
+    background: #fff !important;
+    color: #000;
+    font-size: 12pt;
+    line-height: 1.6;
+  }
+  main { padding: 0 !important; }
+  a { text-decoration: none; color: #000; }
+  .print-page { max-width: 100%; padding: 0; }
+  @page { margin: 0.9in 0.85in; }
+}

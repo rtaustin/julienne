@@ -1,0 +1,20 @@
+{
+  "eyebrow": "Scheduling",
+  "heading": "Find a time that works for you",
+  "intro": "Pick a time below and you will get a confirmation email with everything you need. If none of the times work, use the contact page and we will find one.",
+  "oneOnOneHeading": "One-on-One Coaching",
+  "oneOnOneNote": "Sessions are private and held by video or phone.",
+  "bookingEmbedUrl": "",
+  "bookingFallbackUrl": "",
+  "groupHeading": "Monthly Group Session",
+  "groupNote": "Ten seats per group, so it stays small and safe. When a month fills, you will be offered the next one.",
+  "groupEmbedUrl": "",
+  "groupFallbackUrl": "",
+  "policiesHeading": "A few practical notes",
+  "policies": [
+    "You will get a confirmation email with the link as soon as you book.",
+    "Please give 24 hours' notice if you need to reschedule, so the time can go to someone else.",
+    "Payment is due before your session — Zelle, PayPal, or Venmo all work.",
+    "If you are in crisis or in danger right now, please do not wait for an appointment. Call 911, or the National Domestic Violence Hotline at 1-800-799-7233."
+  ]
+}

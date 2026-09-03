@@ -1,0 +1,205 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import home from '../data/home.json';
+import { getCollection } from 'astro:content';
+import { cdnUrl, srcSet } from '../lib/img';
+import { sortByDateDesc } from '../lib/format';
+
+const testimonies = sortByDateDesc(
+  await getCollection('testimonies', ({ data }) => data.approved)
+).slice(0, 3);
+---
+
+<Base
+  description="Trauma-informed life coaching for survivors of narcissistic and emotional abuse. One-on-one coaching, small group sessions, free printable deliverance prayers, teaching videos, and grounding practices."
+>
+  <!-- Hero -->
+  <section class="relative overflow-hidden bg-navy-900 text-cream">
+    <div
+      class="pointer-events-none absolute -top-32 -right-24 h-96 w-96 rounded-full bg-green-700/25 blur-3xl"
+      aria-hidden="true"
+    >
+    </div>
+    <div
+      class="pointer-events-none absolute -bottom-40 -left-20 h-80 w-80 rounded-full bg-gold-500/12 blur-3xl"
+      aria-hidden="true"
+    >
+    </div>
+
+    <div class="container-page relative grid items-center gap-12 py-16 sm:py-24 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
+      <div>
+        <p class="font-heading text-[0.7rem] font-semibold tracking-[0.24em] text-gold-500 uppercase">
+          {home.heroEyebrow}
+        </p>
+        <h1 class="mt-5 font-display text-[clamp(2.4rem,1.4rem+3.6vw,4.2rem)] leading-[1.05] font-medium tracking-tight text-cream">
+          {home.heroHeading}
+        </h1>
+        <p class="mt-6 max-w-xl text-lg leading-relaxed text-cream/80">
+          {home.heroSubheading}
+        </p>
+
+        <div class="mt-9 flex flex-wrap gap-3">
+          <a href={home.heroPrimaryHref} class="btn btn-gold">
+            {home.heroPrimaryLabel}
+            <Icon name="arrow" class="h-4 w-4" />
+          </a>
+          <a href={home.heroSecondaryHref} class="btn btn-on-dark">{home.heroSecondaryLabel}</a>
+        </div>
+
+        <p class="mt-10 max-w-xl border-l-2 border-gold-500 pl-5 text-sm leading-relaxed text-cream/70">
+          {home.specialization}
+        </p>
+      </div>
+
+      {home.heroImage && (
+        <div class="relative mx-auto w-full max-w-sm lg:max-w-none">
+          <div class="absolute inset-0 translate-x-4 translate-y-4 rounded-[2rem] border border-gold-500/40" aria-hidden="true"></div>
+          <img
+            src={cdnUrl(home.heroImage, { w: 720 })}
+            srcset={srcSet(home.heroImage, [420, 640, 900])}
+            sizes="(min-width: 1024px) 40vw, 85vw"
+            alt={home.heroImageAlt}
+            width="720"
+            height="900"
+            class="relative aspect-3/4 w-full rounded-[2rem] object-cover object-top shadow-2xl"
+            loading="eager"
+            decoding="async"
+          />
+        </div>
+      )}
+    </div>
+  </section>
+
+  <!-- Tagline band -->
+  <section class="bg-green-700 py-6 text-center">
+    <p class="container-page font-display text-xl text-white italic sm:text-2xl">
+      {home.bandTagline}
+    </p>
+  </section>
+
+  <!-- Welcome -->
+  <section class="container-page py-20 sm:py-24">
+    <div class="grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
+      <div>
+        <p class="eyebrow">{home.welcomeEyebrow}</p>
+        <h2 class="section-title mt-3">{home.welcomeHeading}</h2>
+        <hr class="rule-gold mt-6" />
+      </div>
+      <div>
+        {home.welcomeBody.map((paragraph) => (
+          <p class="mb-5 text-lg leading-relaxed text-navy-700 last:mb-0">{paragraph}</p>
+        ))}
+        <p class="mt-8 border-l-2 border-green-700 pl-5 font-display text-2xl leading-snug text-navy-900">
+          {home.welcomeQuote}
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section class="bg-cream-warm py-20 sm:py-24">
+    <div class="container-page">
+      <div class="max-w-2xl">
+        <p class="eyebrow">{home.servicesEyebrow}</p>
+        <h2 class="section-title mt-3">{home.servicesHeading}</h2>
+        <hr class="rule-gold mt-6" />
+      </div>
+
+      <div class="mt-12 grid gap-6 md:grid-cols-3">
+        {home.services.map((service) => (
+          <article class="card card-link flex flex-col p-7">
+            <span class="inline-flex h-11 w-11 items-center justify-center rounded-full bg-green-100 text-green-700">
+              <Icon name={service.icon as 'compass' | 'circle' | 'leaf'} class="h-5 w-5" />
+            </span>
+            <h3 class="mt-5 font-heading text-lg font-semibold text-navy-900">
+              {service.title}
+            </h3>
+            <p class="mt-3 grow text-[0.97rem] leading-relaxed text-navy-700">
+              {service.description}
+            </p>
+            <a
+              href={service.href}
+              class="mt-6 inline-flex items-center gap-2 font-heading text-sm font-semibold text-green-700 underline-offset-4 hover:underline"
+            >
+              {service.linkLabel}
+              <Icon name="arrow" class="h-4 w-4" />
+            </a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Free resources -->
+  <section class="container-page py-20 sm:py-24">
+    <div class="max-w-2xl">
+      <p class="eyebrow">{home.resourcesEyebrow}</p>
+      <h2 class="section-title mt-3">{home.resourcesHeading}</h2>
+      <hr class="rule-gold mt-6" />
+    </div>
+
+    <div class="mt-12 grid gap-5 sm:grid-cols-2">
+      {home.resources.map((resource) => (
+        <a
+          href={resource.href}
+          class="card card-link group flex flex-col justify-between gap-5 p-7"
+        >
+          <div>
+            <h3 class="font-display text-2xl text-navy-900">{resource.title}</h3>
+            <p class="mt-3 text-[0.97rem] leading-relaxed text-navy-700">{resource.description}</p>
+          </div>
+          <span class="inline-flex items-center gap-2 font-heading text-sm font-semibold text-green-700">
+            {resource.cta}
+            <Icon name="arrow" class="h-4 w-4 transition-transform group-hover:translate-x-1" />
+          </span>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  {testimonies.length > 0 && (
+    <section class="bg-cream-warm py-20 sm:py-24">
+      <div class="container-page">
+        <div class="max-w-2xl">
+          <p class="eyebrow">In their own words</p>
+          <h2 class="section-title mt-3">Others have walked this road</h2>
+          <hr class="rule-gold mt-6" />
+        </div>
+        <div class="mt-12 grid gap-6 md:grid-cols-3">
+          {testimonies.map((entry) => (
+            <figure class="card flex flex-col p-7">
+              <blockquote class="grow font-display text-xl leading-relaxed text-navy-800">
+                &ldquo;{entry.data.headline}&rdquo;
+              </blockquote>
+              <figcaption class="mt-5 font-heading text-xs font-semibold tracking-[0.12em] text-gold-700 uppercase">
+                {entry.data.name}
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+        <a
+          href="/testimonies"
+          class="mt-10 inline-flex items-center gap-2 font-heading text-sm font-semibold text-green-700 underline-offset-4 hover:underline"
+        >
+          Read more testimonies
+          <Icon name="arrow" class="h-4 w-4" />
+        </a>
+      </div>
+    </section>
+  )}
+
+  <!-- Closing CTA -->
+  <section class="bg-navy-800 py-20 text-center text-cream sm:py-24">
+    <div class="container-prose">
+      <h2 class="font-display text-[clamp(1.9rem,1.2rem+2.4vw,3rem)] leading-tight font-medium text-cream">
+        {home.closingHeading}
+      </h2>
+      <p class="mx-auto mt-5 max-w-xl text-lg text-cream/80">{home.closingBody}</p>
+      <a href={home.closingCtaHref} class="btn btn-gold mt-9">
+        {home.closingCtaLabel}
+        <Icon name="arrow" class="h-4 w-4" />
+      </a>
+    </div>
+  </section>
+</Base>

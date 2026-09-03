@@ -1,0 +1,72 @@
+---
+import type { GetStaticPaths } from 'astro';
+import Base from '../../layouts/Base.astro';
+import { getCollection, render } from 'astro:content';
+import { cdnUrl, srcSet } from '../../lib/img';
+import { formatDate } from '../../lib/format';
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const pieces = await getCollection('gallery', ({ data }) => data.approved);
+  return pieces.map((piece) => ({
+    params: { slug: piece.id },
+    props: { piece },
+  }));
+};
+
+const { piece } = Astro.props;
+const { Content } = await render(piece);
+---
+
+<Base
+  title={piece.data.title}
+  description={`${piece.data.title} by ${piece.data.artist} — from the survivor art gallery.`}
+  image={piece.data.image}
+>
+  <article class="container-page py-14 sm:py-20">
+    <a
+      href="/gallery"
+      class="inline-flex items-center gap-2 font-heading text-sm font-semibold text-green-700 underline-offset-4 hover:underline"
+    >
+      <span aria-hidden="true">&larr;</span>
+      The Art Gallery
+    </a>
+
+    <div class="mt-8 grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:gap-14">
+      <img
+        src={cdnUrl(piece.data.image, { w: 1100, fit: 'contain' })}
+        srcset={srcSet(piece.data.image, [600, 900, 1400], 'contain')}
+        sizes="(min-width: 1024px) 58vw, 92vw"
+        alt={piece.data.alt}
+        width="1100"
+        height="880"
+        class="w-full rounded-2xl bg-cream-warm object-contain shadow-soft"
+        loading="eager"
+        decoding="async"
+      />
+
+      <div>
+        <h1 class="font-display text-[clamp(1.9rem,1.3rem+2vw,2.75rem)] leading-tight font-medium text-navy-900">
+          {piece.data.title}
+        </h1>
+        <p class="mt-3 font-heading text-sm font-semibold tracking-[0.06em] text-gold-700">
+          {piece.data.artist}
+        </p>
+        {piece.data.medium && <p class="mt-1 text-sm text-navy-600">{piece.data.medium}</p>}
+        <hr class="rule-gold mt-6" />
+
+        <div class="prose prose-brand mt-8 max-w-none">
+          <Content />
+        </div>
+
+        <p class="mt-8 text-xs text-navy-600">Shared {formatDate(piece.data.date)}</p>
+
+        <div class="mt-10 rounded-2xl bg-cream-warm p-6">
+          <p class="leading-relaxed text-navy-700">
+            Have something you made while working through your own pain?
+          </p>
+          <a href="/gallery/submit" class="btn btn-primary mt-4">Submit your work</a>
+        </div>
+      </div>
+    </div>
+  </article>
+</Base>

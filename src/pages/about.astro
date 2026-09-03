@@ -1,0 +1,75 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import about from '../data/about.json';
+import { cdnUrl, srcSet } from '../lib/img';
+---
+
+<Base
+  title="About Julienne"
+  description="Julienne Blackburn is a trauma-informed life coach working with survivors of narcissistic and emotional abuse."
+>
+  <section class="border-b border-navy-800/8 bg-cream-warm">
+    <div class="container-page grid items-center gap-12 py-14 sm:py-20 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
+      <div>
+        <p class="eyebrow">{about.eyebrow}</p>
+        <h1 class="section-title mt-3">{about.heading}</h1>
+        <hr class="rule-gold mt-6" />
+        <div class="mt-8">
+          {about.body.map((paragraph) => (
+            <p class="mb-5 text-lg leading-relaxed text-navy-700 last:mb-0">{paragraph}</p>
+          ))}
+        </div>
+      </div>
+
+      {about.portrait && (
+        <div class="relative mx-auto w-full max-w-xs lg:max-w-none">
+          <div class="absolute inset-0 -translate-x-4 translate-y-4 rounded-[2rem] bg-green-100" aria-hidden="true"></div>
+          <img
+            src={cdnUrl(about.portrait, { w: 640 })}
+            srcset={srcSet(about.portrait, [400, 640, 880])}
+            sizes="(min-width: 1024px) 36vw, 80vw"
+            alt={about.portraitAlt}
+            width="640"
+            height="800"
+            class="relative aspect-4/5 w-full rounded-[2rem] object-cover object-top shadow-lg"
+            loading="eager"
+            decoding="async"
+          />
+        </div>
+      )}
+    </div>
+  </section>
+
+  <section class="container-page py-20 sm:py-24">
+    <div class="max-w-2xl">
+      <h2 class="section-title">{about.beliefsHeading}</h2>
+      <hr class="rule-gold mt-6" />
+    </div>
+    <dl class="mt-12 grid gap-6 sm:grid-cols-2">
+      {about.beliefs.map((belief) => (
+        <div class="card p-7">
+          <dt class="font-heading text-base font-semibold text-navy-900">
+            {belief.title}
+          </dt>
+          <dd class="mt-3 text-[0.97rem] leading-relaxed text-navy-700">{belief.description}</dd>
+        </div>
+      ))}
+    </dl>
+  </section>
+
+  <section class="bg-navy-800 py-20 text-center text-cream sm:py-24">
+    <div class="container-prose">
+      <p class="font-display text-[clamp(1.8rem,1.2rem+2vw,2.75rem)] leading-tight text-cream">
+        {about.quote}
+      </p>
+      <div class="mt-9 flex flex-wrap justify-center gap-3">
+        <a href="/schedule" class="btn btn-gold">
+          Book a Session
+          <Icon name="arrow" class="h-4 w-4" />
+        </a>
+        <a href="/coaching" class="btn btn-on-dark">How coaching works</a>
+      </div>
+    </div>
+  </section>
+</Base>

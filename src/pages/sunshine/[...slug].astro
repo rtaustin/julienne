@@ -1,0 +1,65 @@
+---
+import type { GetStaticPaths } from 'astro';
+import Base from '../../layouts/Base.astro';
+import { getCollection, render } from 'astro:content';
+import { cdnUrl, srcSet } from '../../lib/img';
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const practices = await getCollection('sunshine', ({ data }) => !data.draft);
+  return practices.map((practice) => ({
+    params: { slug: practice.id },
+    props: { practice },
+  }));
+};
+
+const { practice } = Astro.props;
+const { Content } = await render(practice);
+---
+
+<Base title={practice.data.title} description={practice.data.summary}>
+  <article class="container-prose py-14 sm:py-20">
+    <a
+      href="/sunshine"
+      class="inline-flex items-center gap-2 font-heading text-sm font-semibold text-green-700 underline-offset-4 hover:underline"
+    >
+      <span aria-hidden="true">&larr;</span>
+      The Sunshine Page
+    </a>
+
+    <header class="mt-8">
+      <div class="flex flex-wrap items-center gap-2">
+        <span class="rounded-full bg-green-100 px-3 py-1 text-[0.68rem] font-semibold tracking-[0.1em] text-green-900 uppercase">
+          {practice.data.category}
+        </span>
+        {practice.data.minutes && <span class="text-sm text-navy-600">{practice.data.minutes}</span>}
+      </div>
+      <h1 class="mt-4 font-display text-[clamp(2rem,1.4rem+2.2vw,3rem)] leading-tight font-medium text-navy-900">
+        {practice.data.title}
+      </h1>
+      <hr class="rule-gold mt-6" />
+      <p class="mt-6 text-lg leading-relaxed text-navy-700">{practice.data.summary}</p>
+    </header>
+
+    {practice.data.image && (
+      <img
+        src={cdnUrl(practice.data.image, { w: 900 })}
+        srcset={srcSet(practice.data.image, [600, 900, 1300])}
+        sizes="(min-width: 768px) 46rem, 92vw"
+        alt=""
+        width="900"
+        height="560"
+        class="mt-10 w-full rounded-2xl object-cover"
+        loading="lazy"
+        decoding="async"
+      />
+    )}
+
+    <div class="prose prose-brand prose-lg mt-10 max-w-none">
+      <Content />
+    </div>
+
+    <div class="mt-12 border-t border-navy-800/10 pt-8">
+      <a href="/sunshine" class="btn btn-outline">Find another practice</a>
+    </div>
+  </article>
+</Base>

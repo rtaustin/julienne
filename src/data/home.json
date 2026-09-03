@@ -1,0 +1,78 @@
+{
+  "heroEyebrow": "Julienne Blackburn Coaching",
+  "heroHeading": "Your Safe Harbor for Healing",
+  "heroSubheading": "Trauma-informed coaching for people rebuilding their lives after narcissistic and emotional abuse — with strength, grace, faith, and a clear way forward.",
+  "heroImage": "/images/brand/julienne-portrait.png",
+  "heroImageAlt": "Julienne Blackburn, trauma informed life coach",
+  "heroPrimaryLabel": "Book a Session",
+  "heroPrimaryHref": "/schedule",
+  "heroSecondaryLabel": "Start With a Free Prayer",
+  "heroSecondaryHref": "/prayers",
+  "specialization": "Specialized support for emotional abuse caused by narcissistic, borderline, psychopathic, and other Cluster B personality disorders.",
+  "bandTagline": "Finding strength, grace, faith, and renewal after trauma.",
+  "welcomeEyebrow": "You are not imagining it",
+  "welcomeHeading": "You knew something was wrong long before you had a word for it.",
+  "welcomeBody": [
+    "The confusion, the walking on eggshells, the way you started apologizing for things you never did — that is what emotional abuse does. It rewrites how you see yourself until you no longer trust your own memory.",
+    "I work with people who are coming out of that fog. Together we name the patterns, rebuild your boundaries, and reconnect you with the person you were before someone else told you who to be.",
+    "This is trauma-informed coaching rooted in faith. You set the pace. Nothing here is rushed, and nothing here is forced."
+  ],
+  "welcomeQuote": "Break free from the cycle of abuse and rediscover yourself.",
+  "servicesEyebrow": "How we can work together",
+  "servicesHeading": "Three ways to begin",
+  "services": [
+    {
+      "title": "One-on-One Coaching",
+      "description": "Private, unhurried sessions built entirely around your situation — recognizing the patterns, setting boundaries that hold, and making a plan you can actually live.",
+      "linkLabel": "See coaching details",
+      "href": "/coaching",
+      "icon": "compass"
+    },
+    {
+      "title": "Small Group Sessions",
+      "description": "A monthly gathering capped at ten people, so it stays intimate and safe. Sitting with others who understand takes away the isolation faster than almost anything else.",
+      "linkLabel": "Join a group",
+      "href": "/coaching#groups",
+      "icon": "circle"
+    },
+    {
+      "title": "Prayer & Deliverance",
+      "description": "For those who want the spiritual side addressed too — generational patterns, oppression, and the freedom that comes with bringing it into the light.",
+      "linkLabel": "Read the prayers",
+      "href": "/prayers",
+      "icon": "leaf"
+    }
+  ],
+  "resourcesEyebrow": "Free for anyone who needs them",
+  "resourcesHeading": "Take something with you today",
+  "resources": [
+    {
+      "title": "Deliverance Prayers",
+      "description": "Written as God gives them. Free to read, free to print, yours to keep.",
+      "href": "/prayers",
+      "cta": "Read and print"
+    },
+    {
+      "title": "Teaching Videos",
+      "description": "Short teachings on what abuse patterns actually look like, so you can name what happened to you.",
+      "href": "/videos",
+      "cta": "Watch now"
+    },
+    {
+      "title": "The Sunshine Page",
+      "description": "Grounding and outdoor practices for the days when your body needs the healing more than your head does.",
+      "href": "/sunshine",
+      "cta": "Go outside"
+    },
+    {
+      "title": "The Art Gallery",
+      "description": "Work made by survivors moving their pain through their hands. Every piece is prayed over before it is posted.",
+      "href": "/gallery",
+      "cta": "See the gallery"
+    }
+  ],
+  "closingHeading": "Transforming pain into purpose, peace, and light.",
+  "closingBody": "Whenever you are ready — today, or six months from now — there is a seat here for you.",
+  "closingCtaLabel": "Schedule a Session",
+  "closingCtaHref": "/schedule"
+}

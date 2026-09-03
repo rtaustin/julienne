@@ -1,0 +1,163 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import Icon from '../components/Icon.astro';
+import { getCollection } from 'astro:content';
+import { sortByDateDesc } from '../lib/format';
+import { cdnUrl } from '../lib/img';
+
+const videos = sortByDateDesc(await getCollection('videos', ({ data }) => !data.draft));
+
+function embedSrc(platform: string, videoId: string): string {
+  if (platform === 'youtube') {
+    return `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&rel=0`;
+  }
+  if (platform === 'tiktok') {
+    return `https://www.tiktok.com/embed/v2/${videoId}`;
+  }
+  return videoId;
+}
+
+function posterSrc(video: (typeof videos)[number]): string | null {
+  if (video.data.thumbnail) return cdnUrl(video.data.thumbnail, { w: 720 });
+  if (video.data.platform === 'youtube') {
+    return `https://i.ytimg.com/vi/${video.data.videoId}/hqdefault.jpg`;
+  }
+  return null;
+}
+
+const topics = [...new Set(videos.map((v) => v.data.topic))];
+---
+
+<Base
+  title="Teaching Videos"
+  description="Short teaching videos on recognizing abuse patterns, narcissistic abuse, boundaries, and healing."
+>
+  <PageHero
+    eyebrow="Learn the patterns"
+    heading="Teaching Videos"
+    intro="Abuse is easier to leave once you can name it. These short teachings walk through what the patterns actually look like — the ones that are hard to see while you are inside them."
+  />
+
+  <section class="container-page py-16 sm:py-20">
+    {videos.length === 0 ? (
+      <div class="mx-auto max-w-2xl rounded-2xl border border-dashed border-gold-500/60 bg-gold-100/50 p-8 text-center">
+        <p class="font-heading text-base font-semibold text-navy-900">
+          The video library is being built.
+        </p>
+        <p class="mx-auto mt-3 max-w-md leading-relaxed text-navy-700">
+          Teachings are being added here soon. In the meantime, the prayers and the Sunshine page are
+          ready for you.
+        </p>
+        <div class="mt-6 flex flex-wrap justify-center gap-3">
+          <a href="/prayers" class="btn btn-primary">Read the prayers</a>
+          <a href="/sunshine" class="btn btn-outline">The Sunshine page</a>
+        </div>
+      </div>
+    ) : (
+      <>
+        {topics.length > 1 && (
+          <p class="mb-10 flex flex-wrap items-center gap-2">
+            <span class="font-heading text-xs font-semibold tracking-[0.14em] text-navy-600 uppercase">
+              Topics:
+            </span>
+            {topics.map((topic) => (
+              <span class="rounded-full bg-green-100 px-3 py-1 text-xs font-semibold text-green-900">
+                {topic}
+              </span>
+            ))}
+          </p>
+        )}
+
+        <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+          {videos.map((video) => {
+            const poster = posterSrc(video);
+            return (
+              <article class="card flex flex-col overflow-hidden">
+                <div
+                  class="video-embed relative aspect-video w-full bg-navy-800"
+                  data-src={embedSrc(video.data.platform, video.data.videoId)}
+                  data-title={video.data.title}
+                >
+                  {poster && (
+                    <img
+                      src={poster}
+                      alt=""
+                      class="absolute inset-0 h-full w-full object-cover"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  )}
+                  <button
+                    type="button"
+                    class="video-play absolute inset-0 flex items-center justify-center bg-navy-900/35 text-white transition-colors hover:bg-navy-900/55"
+                  >
+                    <span class="sr-only">Play “{video.data.title}”</span>
+                    <Icon name="play" class="h-14 w-14" />
+                  </button>
+                </div>
+
+                <div class="flex grow flex-col p-6">
+                  <p class="font-heading text-[0.68rem] font-semibold tracking-[0.16em] text-gold-700 uppercase">
+                    {video.data.topic}
+                  </p>
+                  <h2 class="mt-2 font-display text-xl leading-snug text-navy-900">
+                    {video.data.title}
+                  </h2>
+                  {video.data.summary && (
+                    <p class="mt-3 grow text-[0.93rem] leading-relaxed text-navy-700">
+                      {video.data.summary}
+                    </p>
+                  )}
+                  {video.data.url && (
+                    <a
+                      href={video.data.url}
+                      target="_blank"
+                      rel="noopener"
+                      class="mt-5 inline-flex items-center gap-2 font-heading text-sm font-semibold text-green-700 underline-offset-4 hover:underline"
+                    >
+                      Watch on {video.data.platform === 'tiktok' ? 'TikTok' : 'YouTube'}
+                      <Icon name="arrow" class="h-4 w-4" />
+                    </a>
+                  )}
+                </div>
+              </article>
+            );
+          })}
+        </div>
+      </>
+    )}
+  </section>
+
+  <section class="bg-cream-warm py-16 sm:py-20">
+    <div class="container-prose text-center">
+      <h2 class="section-title">Recognizing it is the first step. It is not the last one.</h2>
+      <p class="mt-5 leading-relaxed text-navy-700">
+        If something in these videos landed, that is worth talking about with someone who has seen it
+        before.
+      </p>
+      <a href="/schedule" class="btn btn-primary mt-8">Book a session</a>
+    </div>
+  </section>
+</Base>
+
+<script>
+  document.querySelectorAll<HTMLElement>('.video-embed').forEach((wrapper) => {
+    const button = wrapper.querySelector('.video-play');
+    button?.addEventListener('click', () => {
+      const src = wrapper.dataset.src;
+      if (!src) return;
+      const frame = document.createElement('iframe');
+      frame.src = src;
+      frame.title = wrapper.dataset.title ?? 'Video';
+      frame.className = 'absolute inset-0 h-full w-full';
+      frame.setAttribute('frameborder', '0');
+      frame.setAttribute(
+        'allow',
+        'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+      );
+      frame.setAttribute('allowfullscreen', '');
+      wrapper.replaceChildren(frame);
+    });
+  });
+</script>

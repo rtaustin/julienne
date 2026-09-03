@@ -1,0 +1,50 @@
+---
+import site from '../data/site.json';
+
+interface Props {
+  embedUrl?: string;
+  fallbackUrl?: string;
+  title: string;
+  height?: number;
+}
+const { embedUrl, fallbackUrl, title, height = 760 } = Astro.props;
+const link = fallbackUrl || embedUrl;
+---
+
+{embedUrl ? (
+  <div class="overflow-hidden rounded-2xl border border-navy-800/10 bg-white shadow-soft">
+    <iframe
+      src={embedUrl}
+      title={title}
+      width="100%"
+      height={height}
+      loading="lazy"
+      frameborder="0"
+      class="block w-full"
+    ></iframe>
+  </div>
+) : (
+  <div class="rounded-2xl border border-dashed border-gold-500/60 bg-gold-100/50 p-8 text-center">
+    <p class="font-heading text-base font-semibold text-navy-900">
+      Online booking is being set up right now.
+    </p>
+    <p class="mx-auto mt-3 max-w-md leading-relaxed text-navy-700">
+      In the meantime, send a message and we will find a time together — usually within a day or two.
+    </p>
+    <div class="mt-6 flex flex-wrap justify-center gap-3">
+      <a href="/contact" class="btn btn-primary">Request a time</a>
+      {site.email && (
+        <a href={`mailto:${site.email}`} class="btn btn-outline">Email Julienne</a>
+      )}
+    </div>
+  </div>
+)}
+
+{embedUrl && link && (
+  <p class="mt-4 text-center text-sm text-navy-600">
+    Trouble with the calendar above?
+    <a href={link} target="_blank" rel="noopener" class="text-green-700 underline underline-offset-4">
+      Open it in a new tab
+    </a>.
+  </p>
+)}

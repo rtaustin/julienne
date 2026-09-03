@@ -1,0 +1,91 @@
+---
+import Base from '../../layouts/Base.astro';
+import Icon from '../../components/Icon.astro';
+import { getCollection } from 'astro:content';
+import { sortByDateDesc } from '../../lib/format';
+import { cdnUrl, srcSet } from '../../lib/img';
+
+const practices = sortByDateDesc(await getCollection('sunshine', ({ data }) => !data.draft));
+---
+
+<Base
+  title="The Sunshine Page"
+  description="Simple outdoor, grounding, and nature practices to help your body heal after abuse."
+>
+  <section class="border-b border-navy-800/8 bg-gold-100/70">
+    <div class="container-page py-14 sm:py-20">
+      <div class="max-w-2xl">
+        <span class="inline-flex h-12 w-12 items-center justify-center rounded-full bg-gold-500/25 text-gold-700">
+          <Icon name="sun" class="h-6 w-6" />
+        </span>
+        <p class="eyebrow mt-5">Go outside</p>
+        <h1 class="section-title mt-3">The Sunshine Page</h1>
+        <hr class="rule-gold mt-6" />
+        <p class="mt-6 text-lg leading-relaxed text-navy-700">
+          Some days the healing has to happen in your body before it can happen in your head. These
+          are simple, free practices — sunlight, dirt, water, air, movement — for the days when
+          talking about it is more than you have.
+        </p>
+        <p class="mt-4 text-lg leading-relaxed text-navy-700">
+          Nothing here costs money. Nothing here takes long. Pick one and go.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="container-page py-16 sm:py-20">
+    {practices.length === 0 ? (
+      <div class="mx-auto max-w-2xl rounded-2xl border border-dashed border-gold-500/60 bg-cream-warm p-8 text-center">
+        <p class="font-heading text-base font-semibold text-navy-900">
+          The first practices are being written.
+        </p>
+        <p class="mx-auto mt-3 max-w-md leading-relaxed text-navy-700">
+          Until they are here: step outside, put your bare feet on the ground, and take ten slow
+          breaths. That one is always available.
+        </p>
+      </div>
+    ) : (
+      <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {practices.map((practice) => (
+          <article class="card card-link relative flex flex-col overflow-hidden">
+            {practice.data.image && (
+              <img
+                src={cdnUrl(practice.data.image, { w: 640, h: 400 })}
+                srcset={srcSet(practice.data.image, [400, 640, 900])}
+                sizes="(min-width: 1024px) 30vw, 90vw"
+                alt=""
+                width="640"
+                height="400"
+                class="h-44 w-full object-cover"
+                loading="lazy"
+                decoding="async"
+              />
+            )}
+            <div class="flex grow flex-col p-7">
+              <div class="flex flex-wrap items-center gap-2">
+                <span class="rounded-full bg-green-100 px-3 py-1 text-[0.68rem] font-semibold tracking-[0.1em] text-green-900 uppercase">
+                  {practice.data.category}
+                </span>
+                {practice.data.minutes && (
+                  <span class="text-xs text-navy-600">{practice.data.minutes}</span>
+                )}
+              </div>
+              <h2 class="mt-4 font-display text-2xl leading-snug text-navy-900">
+                <a href={`/sunshine/${practice.id}/`} class="after:absolute after:inset-0 after:content-[''] hover:text-green-700">
+                  {practice.data.title}
+                </a>
+              </h2>
+              <p class="mt-3 grow text-[0.95rem] leading-relaxed text-navy-700">
+                {practice.data.summary}
+              </p>
+              <p class="mt-6 flex items-center gap-2 font-heading text-sm font-semibold text-green-700">
+                Try it
+                <Icon name="arrow" class="h-4 w-4" />
+              </p>
+            </div>
+          </article>
+        ))}
+      </div>
+    )}
+  </section>
+</Base>

@@ -1,0 +1,25 @@
+---
+interface Props {
+  eyebrow?: string;
+  heading: string;
+  intro?: string;
+  align?: 'left' | 'center';
+}
+const { eyebrow, heading, intro, align = 'left' } = Astro.props;
+---
+<section class="border-b border-navy-800/8 bg-cream-warm">
+  <div
+    class:list={[
+      'container-page py-14 sm:py-20',
+      align === 'center' ? 'text-center' : '',
+    ]}
+  >
+    <div class:list={['max-w-2xl', align === 'center' ? 'mx-auto' : '']}>
+      {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+      <h1 class="section-title mt-3">{heading}</h1>
+      <hr class:list={['rule-gold mt-6', align === 'center' ? 'mx-auto' : '']} />
+      {intro && <p class="mt-6 text-lg leading-relaxed text-navy-700">{intro}</p>}
+      <slot />
+    </div>
+  </div>
+</section>

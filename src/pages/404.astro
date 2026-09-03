@@ -1,0 +1,20 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base title="Page not found" noindex={true}>
+  <section class="container-prose py-24 text-center sm:py-32">
+    <p class="eyebrow">404</p>
+    <h1 class="section-title mt-3">That page has moved on.</h1>
+    <hr class="rule-gold mx-auto mt-6" />
+    <p class="mt-6 text-lg leading-relaxed text-navy-700">
+      The link may be old, or there may be a typo in the address. Here are the places people go most.
+    </p>
+    <div class="mt-9 flex flex-wrap justify-center gap-3">
+      <a href="/" class="btn btn-primary">Home</a>
+      <a href="/prayers" class="btn btn-outline">Prayers</a>
+      <a href="/schedule" class="btn btn-outline">Schedule a session</a>
+      <a href="/contact" class="btn btn-outline">Contact</a>
+    </div>
+  </section>
+</Base>

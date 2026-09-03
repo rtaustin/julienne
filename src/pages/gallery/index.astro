@@ -1,0 +1,75 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import Icon from '../../components/Icon.astro';
+import { getCollection } from 'astro:content';
+import { sortByDateDesc } from '../../lib/format';
+import { cdnUrl, srcSet } from '../../lib/img';
+
+const pieces = sortByDateDesc(await getCollection('gallery', ({ data }) => data.approved));
+---
+
+<Base
+  title="The Art Gallery"
+  description="Artwork, writing, and craft made by survivors working through pain and trauma. Every piece is reviewed and prayed over before it is posted."
+>
+  <PageHero
+    eyebrow="Made by survivors"
+    heading="The Art Gallery"
+    intro="Pain that cannot be spoken can often be made. These pieces were created by people working their way through abuse and grief — with their hands, when words would not come."
+  >
+    <div class="mt-8 flex flex-wrap gap-3">
+      <a href="/gallery/submit" class="btn btn-primary">
+        Submit your work
+        <Icon name="arrow" class="h-4 w-4" />
+      </a>
+    </div>
+    <p class="mt-6 text-sm leading-relaxed text-navy-600">
+      Every submission is reviewed and prayed over personally before it appears here. Nothing is
+      posted automatically.
+    </p>
+  </PageHero>
+
+  <section class="container-page py-16 sm:py-20">
+    {pieces.length === 0 ? (
+      <div class="mx-auto max-w-2xl rounded-2xl border border-dashed border-gold-500/60 bg-gold-100/50 p-8 text-center">
+        <p class="font-heading text-base font-semibold text-navy-900">
+          The gallery is waiting for its first piece.
+        </p>
+        <p class="mx-auto mt-3 max-w-md leading-relaxed text-navy-700">
+          It could be yours. A painting, a drawing, a poem, a page from a journal, something you
+          built — if it came out of the healing, it belongs here.
+        </p>
+        <a href="/gallery/submit" class="btn btn-primary mt-6">Submit your work</a>
+      </div>
+    ) : (
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {pieces.map((piece) => (
+          <article class="card card-link relative flex flex-col overflow-hidden">
+            <img
+              src={cdnUrl(piece.data.image, { w: 700 })}
+              srcset={srcSet(piece.data.image, [400, 700, 1000])}
+              sizes="(min-width: 1024px) 30vw, 90vw"
+              alt={piece.data.alt}
+              width="700"
+              height="560"
+              class="aspect-4/3 w-full bg-cream-warm object-cover"
+              loading="lazy"
+              decoding="async"
+            />
+            <div class="flex grow flex-col p-6">
+              <h2 class="font-display text-xl leading-snug text-navy-900">
+                <a href={`/gallery/${piece.id}/`} class="after:absolute after:inset-0 after:content-[''] hover:text-green-700">
+                  {piece.data.title}
+                </a>
+              </h2>
+              <p class="mt-2 text-sm text-navy-600">
+                {piece.data.artist}{piece.data.medium ? ` · ${piece.data.medium}` : ''}
+              </p>
+            </div>
+          </article>
+        ))}
+      </div>
+    )}
+  </section>
+</Base>

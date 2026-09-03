@@ -1,0 +1,106 @@
+---
+import site from '../data/site.json';
+
+const year = new Date().getFullYear();
+
+const columns = [
+  {
+    title: 'Work with me',
+    links: [
+      { label: 'One-on-one coaching', href: '/coaching' },
+      { label: 'Group sessions', href: '/coaching#groups' },
+      { label: 'Schedule a session', href: '/schedule' },
+      { label: 'Payment', href: '/giving' },
+    ],
+  },
+  {
+    title: 'Free resources',
+    links: [
+      { label: 'Deliverance prayers', href: '/prayers' },
+      { label: 'Teaching videos', href: '/videos' },
+      { label: 'The Sunshine page', href: '/sunshine' },
+      { label: 'Art gallery', href: '/gallery' },
+    ],
+  },
+  {
+    title: 'More',
+    links: [
+      { label: 'About Julienne', href: '/about' },
+      { label: 'Testimonies', href: '/testimonies' },
+      { label: 'Share your story', href: '/testimonies/share' },
+      { label: 'Contact', href: '/contact' },
+    ],
+  },
+];
+
+const socials = Object.entries(site.social).filter(([, url]) => Boolean(url)) as [string, string][];
+---
+
+<footer class="no-print bg-navy-900 text-cream/85">
+  <div class="container-page py-14">
+    <img
+      src="/images/brand/logo-full.png"
+      alt={site.name}
+      width="340"
+      height="115"
+      class="h-auto w-[clamp(15rem,28vw,21rem)]"
+      loading="lazy"
+      decoding="async"
+    />
+    <hr class="rule-gold mt-8 mb-10" />
+
+    <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+      <div>
+        <p class="font-heading text-sm font-semibold tracking-[0.09em] text-cream uppercase">
+          {site.name}
+        </p>
+        <p class="mt-3 text-sm leading-relaxed text-cream/70">
+          Trauma-informed coaching for survivors of narcissistic and emotional abuse.
+        </p>
+        {site.email && (
+          <p class="mt-4 text-sm">
+            <a href={`mailto:${site.email}`} class="text-gold-300 underline-offset-4 hover:underline">
+              {site.email}
+            </a>
+          </p>
+        )}
+        {socials.length > 0 && (
+          <ul class="mt-4 flex flex-wrap gap-x-4 gap-y-2 text-sm">
+            {socials.map(([name, url]) => (
+              <li>
+                <a href={url} class="text-cream/75 capitalize underline-offset-4 hover:text-gold-300 hover:underline" rel="me noopener">
+                  {name}
+                </a>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+
+      {columns.map((column) => (
+        <div>
+          <p class="font-heading text-xs font-semibold tracking-[0.16em] text-gold-500 uppercase">
+            {column.title}
+          </p>
+          <ul class="mt-4 space-y-2.5 text-sm">
+            {column.links.map((link) => (
+              <li>
+                <a href={link.href} class="text-cream/75 underline-offset-4 transition-colors hover:text-cream hover:underline">
+                  {link.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+
+    <div class="mt-12 border-t border-cream/12 pt-6">
+      <p class="max-w-3xl text-xs leading-relaxed text-cream/55">{site.footerNote}</p>
+      <p class="mt-4 text-xs text-cream/45">
+        &copy; {year} {site.name}. All rights reserved. &middot;
+        <a href="/disclaimer" class="underline-offset-4 hover:underline">Disclaimer &amp; Privacy</a>
+      </p>
+    </div>
+  </div>
+</footer>
