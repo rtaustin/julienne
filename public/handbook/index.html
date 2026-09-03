@@ -1,0 +1,919 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="Setup guide for the Julienne Blackburn Coaching website.">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<style>*{box-sizing:border-box} img{max-width:100%} body{margin:0}</style>
+<title>Julienne's Website Handbook</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600&family=Montserrat:wght@500;600;700&display=swap">
+<style>
+  :root {
+    --navy-900: #16202b;
+    --navy-800: #1e2a38;
+    --navy-600: #47586b;
+    --green: #1f7a63;
+    --green-deep: #14523f;
+    --green-soft: #e3efe9;
+    --gold: #c2a46d;
+    --gold-deep: #96793f;
+    --gold-soft: #f3ead9;
+
+    --ground: #f7f8f9;
+    --ground-warm: #fbf8f3;
+    --surface: #ffffff;
+    --line: #dfe4e9;
+    --line-soft: #ebeef1;
+
+    --ink: #1e2a38;
+    --ink-soft: #47586b;
+    --ink-faint: #6d7d8d;
+
+    --accent: var(--green);
+    --accent-quiet: var(--gold-deep);
+
+    --shadow: 0 1px 2px rgb(30 42 56 / .05), 0 10px 28px -18px rgb(30 42 56 / .3);
+
+    --display: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+    --heading: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+    --body: "Inter", "Segoe UI", system-ui, sans-serif;
+
+    --measure: 34rem;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground: #121a23;
+      --ground-warm: #17212c;
+      --surface: #1b2733;
+      --line: #2c3a48;
+      --line-soft: #243040;
+
+      --ink: #e8ecef;
+      --ink-soft: #b3bfc9;
+      --ink-faint: #8b9aa7;
+
+      --green: #4fb094;
+      --green-deep: #7fcbb4;
+      --green-soft: #1b3a33;
+      --gold: #d5bb8b;
+      --gold-deep: #dfc79b;
+      --gold-soft: #2c2719;
+
+      --accent: var(--green);
+      --accent-quiet: var(--gold-deep);
+      --shadow: 0 1px 2px rgb(0 0 0 / .3), 0 12px 30px -20px rgb(0 0 0 / .8);
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --ground: #121a23;
+    --ground-warm: #17212c;
+    --surface: #1b2733;
+    --line: #2c3a48;
+    --line-soft: #243040;
+
+    --ink: #e8ecef;
+    --ink-soft: #b3bfc9;
+    --ink-faint: #8b9aa7;
+
+    --green: #4fb094;
+    --green-deep: #7fcbb4;
+    --green-soft: #1b3a33;
+    --gold: #d5bb8b;
+    --gold-deep: #dfc79b;
+    --gold-soft: #2c2719;
+
+    --accent: var(--green);
+    --accent-quiet: var(--gold-deep);
+    --shadow: 0 1px 2px rgb(0 0 0 / .3), 0 12px 30px -20px rgb(0 0 0 / .8);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--ground);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 16.5px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
+  }
+
+  a { color: var(--accent); text-underline-offset: 3px; }
+  a:focus-visible, summary:focus-visible {
+    outline: 3px solid var(--gold);
+    outline-offset: 3px;
+    border-radius: 3px;
+  }
+
+  .wrap {
+    max-width: 60rem;
+    margin-inline: auto;
+    padding: 0 1.35rem 5rem;
+  }
+
+  /* ---------- masthead ---------- */
+  .masthead {
+    background: var(--navy-900);
+    color: #eef1f4;
+    padding: 3.5rem 0 3rem;
+    margin-bottom: 3rem;
+  }
+  .masthead .wrap { padding-bottom: 0; }
+  .crest {
+    display: flex;
+    align-items: center;
+    gap: .8rem;
+    font-family: var(--heading);
+    font-size: .66rem;
+    font-weight: 600;
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+  .crest::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, rgb(194 164 109 / .55), transparent);
+  }
+  .masthead h1 {
+    font-family: var(--display);
+    font-weight: 500;
+    font-size: clamp(2.3rem, 1.4rem + 3.4vw, 3.6rem);
+    line-height: 1.08;
+    margin: 1.4rem 0 0;
+    text-wrap: balance;
+    color: #fff;
+  }
+  .masthead .standfirst {
+    max-width: var(--measure);
+    margin: 1.25rem 0 0;
+    color: #c3ccd4;
+    font-size: 1.03rem;
+  }
+  .masthead .meta {
+    margin-top: 2.2rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid rgb(255 255 255 / .12);
+    font-family: var(--heading);
+    font-size: .7rem;
+    letter-spacing: .13em;
+    text-transform: uppercase;
+    color: #93a2b0;
+  }
+
+  /* ---------- sections ---------- */
+  section { margin-bottom: 3.4rem; }
+  section > * + * { margin-top: 1.05rem; }
+
+  .kicker {
+    font-family: var(--heading);
+    font-size: .68rem;
+    font-weight: 600;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--accent-quiet);
+    margin: 0;
+  }
+  h2 {
+    font-family: var(--display);
+    font-weight: 500;
+    font-size: clamp(1.75rem, 1.2rem + 1.9vw, 2.4rem);
+    line-height: 1.15;
+    margin: .35rem 0 0;
+    text-wrap: balance;
+  }
+  h3 {
+    font-family: var(--heading);
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: -.005em;
+    margin: 0;
+  }
+  p { margin: 0; max-width: var(--measure); }
+  section p + p { margin-top: .9rem; }
+  .lede { font-size: 1.06rem; color: var(--ink-soft); }
+
+  strong { font-weight: 600; color: var(--ink); }
+
+  /* ---------- numbered sequence ---------- */
+  .steps {
+    list-style: none;
+    margin: 1.6rem 0 0;
+    padding: 0;
+    display: grid;
+    gap: 1.4rem;
+  }
+  .steps > li {
+    display: grid;
+    grid-template-columns: 2.4rem 1fr;
+    gap: 1.1rem;
+    align-items: start;
+  }
+  .steps .n {
+    font-family: var(--heading);
+    font-size: .78rem;
+    font-weight: 700;
+    color: var(--gold-deep);
+    background: var(--gold-soft);
+    border-radius: 999px;
+    width: 2.1rem;
+    height: 2.1rem;
+    display: grid;
+    place-items: center;
+    font-variant-numeric: tabular-nums;
+  }
+  .steps .body > * + * { margin-top: .5rem; }
+  .steps p { max-width: 32rem; }
+
+  /* ---------- decision blocks ---------- */
+  .decision {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--green);
+    border-radius: 0 .75rem .75rem 0;
+    padding: 1.25rem 1.4rem;
+  }
+  .decision > * + * { margin-top: .6rem; }
+  .decision .who {
+    font-family: var(--heading);
+    font-size: .64rem;
+    font-weight: 600;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--green-deep);
+  }
+
+  .decisions { display: grid; gap: .9rem; margin-top: 1.5rem; }
+
+  /* ---------- comparison ---------- */
+  .compare {
+    display: grid;
+    gap: 1rem;
+    margin-top: 1.6rem;
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  }
+  .option {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: .8rem;
+    padding: 1.3rem;
+    display: flex;
+    flex-direction: column;
+    gap: .65rem;
+    box-shadow: var(--shadow);
+  }
+  .option.pick { border-color: var(--green); box-shadow: 0 0 0 1px var(--green), var(--shadow); }
+  .option .tag {
+    align-self: flex-start;
+    font-family: var(--heading);
+    font-size: .6rem;
+    font-weight: 700;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    padding: .28rem .6rem;
+    border-radius: 999px;
+    background: var(--green-soft);
+    color: var(--green-deep);
+  }
+  .option .price {
+    font-family: var(--heading);
+    font-size: .82rem;
+    font-weight: 600;
+    color: var(--ink-faint);
+    font-variant-numeric: tabular-nums;
+  }
+  .option p { font-size: .93rem; color: var(--ink-soft); max-width: none; }
+  .option ul { margin: 0; padding-left: 1.1rem; font-size: .9rem; color: var(--ink-soft); }
+  .option li + li { margin-top: .3rem; }
+
+  /* ---------- plain fact list ---------- */
+  .facts { margin: 1.3rem 0 0; padding: 0; list-style: none; }
+  .facts > li {
+    display: grid;
+    grid-template-columns: minmax(7rem, 10rem) 1fr;
+    gap: 0 1.2rem;
+    padding: .75rem 0;
+    border-top: 1px solid var(--line-soft);
+    align-items: baseline;
+  }
+  .facts > li:last-child { border-bottom: 1px solid var(--line-soft); }
+  .facts dt, .facts .k {
+    font-family: var(--heading);
+    font-size: .73rem;
+    font-weight: 600;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+  .facts .v { font-size: .96rem; }
+  @media (max-width: 34rem) {
+    .facts > li { grid-template-columns: 1fr; gap: .2rem; }
+  }
+
+  /* ---------- brand swatches ---------- */
+  .swatches {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
+    gap: .8rem;
+    margin-top: 1.5rem;
+  }
+  .sw { border-radius: .6rem; overflow: hidden; border: 1px solid var(--line); background: var(--surface); }
+  .sw .chip { height: 4.2rem; }
+  .sw .label { padding: .6rem .7rem .75rem; }
+  .sw .name {
+    font-family: var(--heading);
+    font-size: .72rem;
+    font-weight: 600;
+    letter-spacing: .04em;
+  }
+  .sw .hex {
+    font-family: var(--heading);
+    font-size: .74rem;
+    color: var(--ink-faint);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: .02em;
+  }
+
+  /* ---------- callout ---------- */
+  .note {
+    background: var(--gold-soft);
+    border-radius: .75rem;
+    padding: 1.15rem 1.3rem;
+    font-size: .95rem;
+  }
+  .note > * + * { margin-top: .55rem; }
+  .note strong { color: var(--ink); }
+  .note p { max-width: none; }
+
+  .quiet { color: var(--ink-faint); font-size: .88rem; }
+
+  code {
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    font-size: .87em;
+    background: var(--ground-warm);
+    border: 1px solid var(--line-soft);
+    border-radius: .3rem;
+    padding: .1em .38em;
+  }
+
+  .rule {
+    border: 0;
+    height: 1px;
+    background: var(--line);
+    margin: 3.4rem 0;
+  }
+
+  .taglines {
+    list-style: none;
+    margin: 1.5rem 0 0;
+    padding: 0;
+    display: grid;
+    gap: .8rem;
+  }
+  .taglines li {
+    display: grid;
+    grid-template-columns: minmax(9rem, 12rem) 1fr;
+    gap: .3rem 1.2rem;
+    padding-bottom: .8rem;
+    border-bottom: 1px solid var(--line-soft);
+  }
+  .taglines .line {
+    font-family: var(--display);
+    font-size: 1.14rem;
+    color: var(--ink);
+  }
+  .taglines .where {
+    font-family: var(--heading);
+    font-size: .68rem;
+    font-weight: 600;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--accent-quiet);
+    align-self: center;
+  }
+  @media (max-width: 36rem) {
+    .taglines li { grid-template-columns: 1fr; }
+  }
+
+  footer.end {
+    margin-top: 4rem;
+    padding-top: 1.6rem;
+    border-top: 2px solid var(--gold);
+    color: var(--ink-faint);
+    font-size: .9rem;
+  }
+  footer.end p { max-width: none; }
+
+  @media print {
+    body { background: #fff; color: #000; font-size: 11pt; }
+    .masthead { background: #fff; color: #000; padding-top: 0; }
+    .masthead h1, .masthead .standfirst, .masthead .meta { color: #000; }
+    .option, .decision, .note, .sw { break-inside: avoid; }
+    @page { margin: .8in; }
+  }
+</style>
+</head>
+<body>
+<header class="masthead">
+  <div class="wrap">
+    <p class="crest">Julienne Blackburn Coaching</p>
+    <h1>Your website, and the six things only you can decide</h1>
+    <p class="standfirst">
+      The site is built and every page you asked for is on it. What is left is a short list of
+      choices that need your name, your money, or your judgment — nobody else can make them for you.
+      This walks through each one.
+    </p>
+    <p class="meta">Prepared for Julienne &middot; September 2026</p>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <section>
+    <p class="kicker">Where things stand</p>
+    <h2>What is already built</h2>
+    <p class="lede">
+      Everything on your list has a home. Some pages are waiting on content from you, and they say so
+      gracefully rather than looking broken.
+    </p>
+    <ul class="facts">
+      <li><span class="k">Home</span><span class="v">Your photo, the specialization line about Cluster B abuse, three ways to work with you, and the free resources.</span></li>
+      <li><span class="k">About</span><span class="v">Who you are and what people can count on when they work with you.</span></li>
+      <li><span class="k">Coaching</span><span class="v">One-on-one and the ten-person group, side by side, with the questions people ask before booking.</span></li>
+      <li><span class="k">Schedule</span><span class="v">Two calendars — one for private sessions, one for the monthly group. Waiting on your booking account.</span></li>
+      <li><span class="k">Payment</span><span class="v">Zelle, PayPal, and Venmo. Waiting on your handles.</span></li>
+      <li><span class="k">Prayers</span><span class="v">Each prayer gets its own page with a Print button, formatted to come out clean on paper. Free, no sign-up.</span></li>
+      <li><span class="k">Videos</span><span class="v">YouTube or TikTok, sorted by topic. You paste a link, it appears.</span></li>
+      <li><span class="k">Sunshine</span><span class="v">Three grounding practices are already written as examples. Change them or replace them entirely.</span></li>
+      <li><span class="k">Gallery</span><span class="v">People submit through a form. Nothing appears until you tick "reviewed, prayed over, approved."</span></li>
+      <li><span class="k">Testimonies</span><span class="v">Same approval gate. Nobody's story goes up without you saying so.</span></li>
+      <li><span class="k">Contact</span><span class="v">A form that reaches you, with crisis numbers beside it.</span></li>
+      <li><span class="k">Disclaimer</span><span class="v">The coaching-is-not-therapy language, plainly written. This one matters — see below.</span></li>
+    </ul>
+  </section>
+
+  <hr class="rule">
+
+  <section>
+    <p class="kicker">The short list</p>
+    <h2>Six decisions waiting on you</h2>
+    <p class="lede">
+      Richard can wire up every one of these in an afternoon once he has your answers. The rest of
+      this document explains each choice in more detail.
+    </p>
+    <div class="decisions">
+      <div class="decision">
+        <p class="who">1 &middot; Pick and buy</p>
+        <h3>Your web address</h3>
+        <p>Roughly $11 a year. <code>julienneblackburncoaching.com</code> is the safe pick — long, but it is exactly what people will search for.</p>
+      </div>
+      <div class="decision">
+        <p class="who">2 &middot; Sign up</p>
+        <h3>A booking account</h3>
+        <p>Free to about $15 a month depending on which you pick. This is what makes both calendars work, including the ten-seat cap on the group.</p>
+      </div>
+      <div class="decision">
+        <p class="who">3 &middot; Send to Richard</p>
+        <h3>Your payment handles</h3>
+        <p>Your Venmo username, your PayPal.me link, and the email or phone number people should use for Zelle.</p>
+      </div>
+      <div class="decision">
+        <p class="who">4 &middot; Create</p>
+        <h3>A business email address</h3>
+        <p>Something at your own domain rather than Gmail. It shows up in your footer and on your cards.</p>
+      </div>
+      <div class="decision">
+        <p class="who">5 &middot; Confirm</p>
+        <h3>Your session prices</h3>
+        <p>Single session and group seat. These go on the coaching page so people are not left guessing.</p>
+      </div>
+      <div class="decision">
+        <p class="who">6 &middot; Read and approve</p>
+        <h3>The disclaimer page</h3>
+        <p>It draws the line between coaching and therapy. Read it before the site goes live and tell me if anything is off.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <section>
+    <p class="kicker">Decision one</p>
+    <h2>Buying your web address</h2>
+    <p class="lede">
+      A domain is the address people type. You rent it yearly. It is separate from where the site is
+      built, which is already handled and costs nothing.
+    </p>
+    <p>
+      Buy it in your own name, with your own credit card, on your own account. This is the one piece
+      of the whole setup you should never let anyone else own — if you and a designer ever part ways,
+      the domain is what you cannot rebuild.
+    </p>
+
+    <div class="compare">
+      <div class="option pick">
+        <span class="tag">Recommended</span>
+        <h3>Porkbun</h3>
+        <p class="price">≈ $11 / year</p>
+        <p>Honest pricing, no upsell maze at checkout, free privacy protection included. Easiest of the three to get through.</p>
+      </div>
+      <div class="option">
+        <h3>Cloudflare Registrar</h3>
+        <p class="price">≈ $10 / year</p>
+        <p>Sells domains at cost with no markup ever. The account setup is slightly more technical.</p>
+      </div>
+      <div class="option">
+        <h3>Namecheap</h3>
+        <p class="price">≈ $13 / year</p>
+        <p>Fine, and widely used. Watch for the add-ons it tries to slip into your cart.</p>
+      </div>
+    </div>
+
+    <div class="note">
+      <p><strong>Avoid GoDaddy.</strong> The first year is cheap and the renewal is not, and the checkout is built to sell you things you do not need.</p>
+    </div>
+
+    <ol class="steps">
+      <li>
+        <span class="n">1</span>
+        <div class="body">
+          <h3>Check what is available</h3>
+          <p>Try <code>julienneblackburncoaching.com</code> first. If it is taken, <code>julienneblackburn.com</code> or <code>jbcoaching.com</code> are good fallbacks. Stay with <code>.com</code> — people type it by reflex.</p>
+        </div>
+      </li>
+      <li>
+        <span class="n">2</span>
+        <div class="body">
+          <h3>Buy just the domain</h3>
+          <p>Decline the hosting, the website builder, the email package, and the SSL certificate. You already have all of those. Keep the free privacy protection — it keeps your home address out of the public registry, which matters in your line of work.</p>
+        </div>
+      </li>
+      <li>
+        <span class="n">3</span>
+        <div class="body">
+          <h3>Turn on auto-renew, then send Richard the login</h3>
+          <p>A lapsed domain can be bought out from under you within days. Once auto-renew is on, Richard points it at the site — that part takes about ten minutes.</p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <hr class="rule">
+
+  <section>
+    <p class="kicker">Decision two</p>
+    <h2>The scheduling calendar</h2>
+    <p class="lede">
+      Your site has two calendar spaces already built into it — one for private sessions, one for the
+      monthly group. You sign up for a booking service, send Richard the link, and both go live.
+    </p>
+    <p>
+      Everything you described is standard: private one-on-ones, plus a recurring group event that
+      stops taking bookings at ten people. You do not need anything unusual or expensive.
+    </p>
+
+    <div class="compare">
+      <div class="option pick">
+        <span class="tag">Look at this one first</span>
+        <h3>Cal.com</h3>
+        <p class="price">Free for one person</p>
+        <ul>
+          <li>Unlimited session types on the free plan, so private and group are separate</li>
+          <li>Seated events with a seat count — your ten-person cap</li>
+          <li><strong>Attendees can be hidden from each other</strong> in a seated event</li>
+          <li>Takes payment through Stripe or PayPal at booking</li>
+          <li>Open source, so the whole thing can be moved elsewhere later</li>
+        </ul>
+        <p class="quiet">Confirm on their pricing page that seated events and the embed are on the free plan before committing — Cal.com moves features between tiers fairly often.</p>
+      </div>
+      <div class="option">
+        <h3>Calendly Standard</h3>
+        <p class="price">$12 / month</p>
+        <ul>
+          <li>The most familiar to clients — most people have booked through it before</li>
+          <li>Group events with a seat limit</li>
+          <li>Payment at booking through PayPal</li>
+        </ul>
+        <p class="quiet">The safest, dullest choice. Its free plan only allows one session type and no payments, so it will not cover what you need.</p>
+      </div>
+      <div class="option">
+        <h3>Acuity Scheduling</h3>
+        <p class="price">from $16 / month</p>
+        <ul>
+          <li>Proper "class" bookings with a seat count</li>
+          <li>Intake forms before the first session</li>
+          <li>Session packages and prepaid bundles</li>
+        </ul>
+        <p class="quiet">More capable, more to learn. Worth moving to if you later want intake forms or want to sell blocks of sessions.</p>
+      </div>
+    </div>
+
+    <div class="note">
+      <p><strong>Why Cal.com is worth the look, specifically for your group.</strong> In a seated
+      event it can hide attendees from one another, so ten survivors can book the same session
+      without any of them seeing the others' names or email addresses on a confirmation. For a
+      group of abuse survivors that is not a nice-to-have — a leaked attendee list is a real safety
+      problem, and most booking tools show everyone to everyone by default.</p>
+    </div>
+
+    <h3 style="margin-top:2.2rem">A note on "open source" and hosting</h3>
+    <p>
+      Cal.com is open source, and you may see that it can be self-hosted for free. That is true, but
+      it does not mean it runs on the same hosting as your website. Your site is a set of files
+      served straight to visitors — there is nothing running behind it. A booking system needs a
+      live server and a database, running all the time, to hold appointments and send reminders.
+    </p>
+    <p>
+      So there are two honest options: use Cal.com's own hosted version (free for one person, and
+      what I would do), or pay for a separate server to run your own copy — roughly $10 to $20 a
+      month, plus setup, plus somebody keeping it patched. Self-hosting is worth it when you have a
+      technical team. You do not need that, and the hosted free plan is the same software.
+    </p>
+
+    <div class="note">
+      <p><strong>One thing to set up on day one, whichever you choose:</strong> a buffer between appointments. Fifteen minutes after each session, automatically. This work is heavy, and back-to-back bookings will wear you down faster than anything else on this list.</p>
+      <p>Also worth setting: how far ahead people can book, and a cutoff so nobody books you for two hours from now.</p>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <section>
+    <p class="kicker">Decision three</p>
+    <h2>Taking payment</h2>
+    <p class="lede">
+      The payment page is built and waiting for three pieces of information. Send Richard these and it
+      goes live.
+    </p>
+    <ul class="facts">
+      <li><span class="k">Venmo</span><span class="v">Your username, and confirmation you want it shown publicly.</span></li>
+      <li><span class="k">PayPal</span><span class="v">Your PayPal.me link — set one up free at paypal.me if you do not have one.</span></li>
+      <li><span class="k">Zelle</span><span class="v">The email address or phone number people should send to. Zelle works through your own bank's app; there is nothing to sign up for.</span></li>
+    </ul>
+    <p>
+      Set up a <strong>business</strong> profile on Venmo and PayPal rather than using your personal
+      one. It keeps your client payments separate from your grocery split-ups, which your accountant
+      will thank you for, and it means clients are not looking at your personal transaction feed.
+    </p>
+    <div class="note">
+      <p><strong>Once your LLC exists:</strong> open a business checking account and point all three
+      payment methods at it. Mixing business income into a personal account is the single most common
+      thing that undermines the liability protection an LLC is supposed to give you.</p>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <section>
+    <p class="kicker">How it works</p>
+    <h2>Changing your own website</h2>
+    <p class="lede">
+      You have an editor at <code>yoursite.com/keystatic</code>. It looks like a form. You fill it in,
+      press Save, and the website updates itself a minute later. No code, and nothing you can break.
+    </p>
+
+    <ol class="steps">
+      <li>
+        <span class="n">1</span>
+        <div class="body">
+          <h3>Sign in</h3>
+          <p>Go to your site address followed by <code>/keystatic</code> — so <code>yoursite.com/keystatic</code> — and sign in. Bookmark that page; it is the only address you need.</p>
+        </div>
+      </li>
+      <li>
+        <span class="n">2</span>
+        <div class="body">
+          <h3>Pick what you are changing</h3>
+          <p>Down the left you will see Prayers, Videos, Sunshine, Gallery, Testimonies, and then the page content — Home, About, Coaching, Schedule, Payment, Contact.</p>
+        </div>
+      </li>
+      <li>
+        <span class="n">3</span>
+        <div class="body">
+          <h3>Write, then Save</h3>
+          <p>Every field is labeled in plain language. Writing a prayer works like writing an email — type it, bold what you want bold, save it.</p>
+        </div>
+      </li>
+      <li>
+        <span class="n">4</span>
+        <div class="body">
+          <h3>Wait about a minute</h3>
+          <p>The site rebuilds itself after each save. Refresh the page and your change is there.</p>
+        </div>
+      </li>
+    </ol>
+
+    <div class="note">
+      <p><strong>Nothing is ever really deleted.</strong> Every save is kept as its own version, so anything you change can be put back exactly as it was. Write freely — you cannot wreck it.</p>
+      <p>Every prayer, video, and practice also has a <strong>Draft</strong> checkbox. Tick it and the piece stays hidden while you work on it, then untick it when you are ready.</p>
+    </div>
+
+    <h3 style="margin-top:2.2rem">Getting you a login</h3>
+    <p>
+      The editor is already built and works. What it still needs is a way to know it is you signing
+      in, and there are two routes. Richard sets one of these up once, and then it is done.
+    </p>
+
+    <div class="compare">
+      <div class="option pick">
+        <span class="tag">Simpler for you</span>
+        <h3>Sign in with an email address</h3>
+        <p class="price">Free for one editor</p>
+        <p>The editor's makers run a free sign-in service for exactly this. You get a normal
+        email-and-password login and never see anything technical.</p>
+        <p class="quiet">Free covers one editor, which is you. If you later want someone helping you post, that is the point where it would start costing.</p>
+      </div>
+      <div class="option">
+        <h3>Sign in with GitHub</h3>
+        <p class="price">Free, no limit on editors</p>
+        <p>GitHub is where your website's files live. You would make a free account there once, and
+        Richard would give it permission to edit your site.</p>
+        <p class="quiet">Free forever and never runs out of editors, but it means making an account on a developers' website, which is the sort of thing that puts people off.</p>
+      </div>
+    </div>
+
+    <p style="margin-top:1.4rem">
+      Either way you end up in the same editor looking at the same fields. The only difference is
+      the sign-in screen. My advice is the first one, and the second is there if you ever outgrow it.
+    </p>
+
+    <div class="note">
+      <p><strong>Until then, nothing is stuck.</strong> Send Richard anything you want on the site —
+      a prayer, a video link, a piece of art someone sent you — and he can put it up in a couple of
+      minutes. The login is a convenience for you, not a thing the website is waiting on.</p>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <section>
+    <p class="kicker">The review gate</p>
+    <h2>Art and testimonies reach you first</h2>
+    <p class="lede">
+      You asked to pray over each submission before it goes up. That is built in as a hard rule, not a
+      habit you have to remember.
+    </p>
+    <ol class="steps">
+      <li>
+        <span class="n">1</span>
+        <div class="body">
+          <h3>Someone submits</h3>
+          <p>They fill in the form on your site, upload a photo of their piece, choose how they want to be credited, and tick a box giving permission. Nothing is published by this step.</p>
+        </div>
+      </li>
+      <li>
+        <span class="n">2</span>
+        <div class="body">
+          <h3>You get an email</h3>
+          <p>The submission and the image land in your inbox and in a list only you can see.</p>
+        </div>
+      </li>
+      <li>
+        <span class="n">3</span>
+        <div class="body">
+          <h3>You review and pray over it</h3>
+          <p>Take as long as you want. Nothing is on a clock.</p>
+        </div>
+      </li>
+      <li>
+        <span class="n">4</span>
+        <div class="body">
+          <h3>Only then does it go up</h3>
+          <p>In the editor you add the piece and tick <strong>"Reviewed, prayed over, and approved to publish."</strong> Until that box is ticked, the website behaves as if the piece does not exist. If you decline something, you simply never add it.</p>
+        </div>
+      </li>
+    </ol>
+    <p>Testimonies work exactly the same way, with the same approval box.</p>
+  </section>
+
+  <hr class="rule">
+
+  <section>
+    <p class="kicker">Your words</p>
+    <h2>Where your taglines landed</h2>
+    <p class="lede">
+      All four are on the site, spread out rather than stacked, so each one gets its own moment.
+      They are good lines — I did not try to improve them.
+    </p>
+    <ul class="taglines">
+      <li>
+        <span class="where">Home, headline</span>
+        <span class="line">Your Safe Harbor for Healing</span>
+      </li>
+      <li>
+        <span class="where">Home, green band</span>
+        <span class="line">Finding strength, grace, faith, and renewal after trauma</span>
+      </li>
+      <li>
+        <span class="where">Coaching, heading</span>
+        <span class="line">Break free from the cycle of abuse and rediscover yourself</span>
+      </li>
+      <li>
+        <span class="where">Closing, every page</span>
+        <span class="line">Transforming pain into purpose, peace, and light</span>
+      </li>
+    </ul>
+    <p>
+      Your specialization line sits under the headline on the home page:
+      <em>"Specialized support for emotional abuse caused by narcissistic, borderline, psychopathic,
+      and other Cluster B personality disorders."</em>
+    </p>
+    <div class="note">
+      <p><strong>One wording change.</strong> You wrote "group B." The clinical term is
+      <strong>Cluster B</strong> — same thing, and it is what people searching for help will type. I
+      used Cluster B throughout. Say the word if you would rather it read differently.</p>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <section>
+    <p class="kicker">Print</p>
+    <h2>Business cards that match</h2>
+    <p class="lede">
+      Your logo, colors, and fonts are all pinned down. Hand a printer the specifications below and
+      the cards will match the website exactly.
+    </p>
+
+    <div class="swatches">
+      <div class="sw"><div class="chip" style="background:#1E2A38"></div><div class="label"><div class="name">Deep Navy</div><div class="hex">#1E2A38</div></div></div>
+      <div class="sw"><div class="chip" style="background:#1F7A63"></div><div class="label"><div class="name">Forest Green</div><div class="hex">#1F7A63</div></div></div>
+      <div class="sw"><div class="chip" style="background:#C2A46D"></div><div class="label"><div class="name">Antique Gold</div><div class="hex">#C2A46D</div></div></div>
+      <div class="sw"><div class="chip" style="background:#6C8EA4"></div><div class="label"><div class="name">Slate Blue</div><div class="hex">#6C8EA4</div></div></div>
+      <div class="sw"><div class="chip" style="background:#F8F9FA;border-bottom:1px solid #dfe4e9"></div><div class="label"><div class="name">Off-White</div><div class="hex">#F8F9FA</div></div></div>
+    </div>
+
+    <ul class="facts">
+      <li><span class="k">Headline font</span><span class="v">Montserrat, Semibold</span></li>
+      <li><span class="k">Name / accent</span><span class="v">Cormorant Garamond, Medium</span></li>
+      <li><span class="k">Body / details</span><span class="v">Inter, Regular</span></li>
+      <li><span class="k">Logo file</span><span class="v">Richard has a clean transparent version — the one you tried to cut out had a colored halo around the edges, so it was re-cut from the original. Ask him for <code>logo-full.png</code>.</span></li>
+      <li><span class="k">Card front</span><span class="v">Navy background, gold logo, your name, "Trauma Informed Life Coach."</span></li>
+      <li><span class="k">Card back</span><span class="v">Off-white. Website, email, phone. One tagline in Cormorant italic — "Your safe harbor for healing" reads best at that size.</span></li>
+    </ul>
+
+    <div class="compare">
+      <div class="option pick">
+        <span class="tag">Best quality</span>
+        <h3>Moo</h3>
+        <p class="price">≈ $40 for 100</p>
+        <p>Heavier stock, accurate color. The navy will print deep rather than washed out, which is where cheap printers fail.</p>
+      </div>
+      <div class="option">
+        <h3>Vistaprint</h3>
+        <p class="price">≈ $20 for 100</p>
+        <p>Cheaper and perfectly usable. Order the thickest stock they offer and skip the glossy finish.</p>
+      </div>
+      <div class="option">
+        <h3>Canva Print</h3>
+        <p class="price">≈ $25 for 100</p>
+        <p>Design and print in one place. Easiest if you want to make the cards yourself using the colors above.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <section>
+    <p class="kicker">Worth doing next</p>
+    <h2>Two things that would lift the whole site</h2>
+    <ol class="steps">
+      <li>
+        <span class="n">1</span>
+        <div class="body">
+          <h3>Photographs</h3>
+          <p>The photo in the white blazer is working well and is on the site now. But it is a phone picture against house siding, and at large sizes that shows. A local photographer will do a half-hour session for $150 to $300.</p>
+          <p>Ask for three things: one standing shot with room around you for text, one seated and warmer for the About page, and a few close ones for social media. Outdoors in the hour before sunset, in the navy or the green, with an uncluttered background.</p>
+        </div>
+      </li>
+      <li>
+        <span class="n">2</span>
+        <div class="body">
+          <h3>The first three prayers</h3>
+          <p>The prayers page is the one people will share, and it is the reason someone lands on your site at two in the morning. It is empty right now and says so kindly, but three prayers would change what that page does. They can go up the same day you write them.</p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <footer class="end">
+    <p>
+      Nothing here is urgent except the domain, and only because good names get taken. Everything else
+      can wait until you have the space for it — the site works, and it will keep working while you
+      decide.
+    </p>
+  </footer>
+
+</div>
+</body>
+</html>
