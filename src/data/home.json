@@ -1,9 +1,9 @@
 {
   "heroEyebrow": "Julienne Blackburn Coaching",
   "heroHeading": "Your Safe Harbor for Healing",
-  "heroSubheading": "Trauma-informed coaching for people rebuilding their lives after narcissistic and emotional abuse — with strength, grace, faith, and a clear way forward.",
-  "heroImage": "/images/brand/julienne-portrait.png",
-  "heroImageAlt": "Julienne Blackburn, trauma informed life coach",
+  "heroSubheading": "Trauma-informed coaching for people rebuilding their lives after narcissistic and emotional abuse \u2014 with strength, grace, faith, and a clear way forward.",
+  "heroImage": "/images/brand/julienne-portrait.jpg",
+  "heroImageAlt": "Julienne Blackburn, trauma informed life coach, smiling in a green cardigan",
   "heroPrimaryLabel": "Book a Session",
   "heroPrimaryHref": "/schedule",
   "heroSecondaryLabel": "Start With a Free Prayer",
@@ -13,7 +13,7 @@
   "welcomeEyebrow": "You are not imagining it",
   "welcomeHeading": "You knew something was wrong long before you had a word for it.",
   "welcomeBody": [
-    "The confusion, the walking on eggshells, the way you started apologizing for things you never did — that is what emotional abuse does. It rewrites how you see yourself until you no longer trust your own memory.",
+    "The confusion, the walking on eggshells, the way you started apologizing for things you never did \u2014 that is what emotional abuse does. It rewrites how you see yourself until you no longer trust your own memory.",
     "I work with people who are coming out of that fog. Together we name the patterns, rebuild your boundaries, and reconnect you with the person you were before someone else told you who to be.",
     "This is trauma-informed coaching rooted in faith. You set the pace. Nothing here is rushed, and nothing here is forced."
   ],
@@ -23,7 +23,7 @@
   "services": [
     {
       "title": "One-on-One Coaching",
-      "description": "Private, unhurried sessions built entirely around your situation — recognizing the patterns, setting boundaries that hold, and making a plan you can actually live.",
+      "description": "Private, unhurried sessions built entirely around your situation \u2014 recognizing the patterns, setting boundaries that hold, and making a plan you can actually live.",
       "linkLabel": "See coaching details",
       "href": "/coaching",
       "icon": "compass"
@@ -37,7 +37,7 @@
     },
     {
       "title": "Prayer & Deliverance",
-      "description": "For those who want the spiritual side addressed too — generational patterns, oppression, and the freedom that comes with bringing it into the light.",
+      "description": "For those who want the spiritual side addressed too \u2014 generational patterns, oppression, and the freedom that comes with bringing it into the light.",
       "linkLabel": "Read the prayers",
       "href": "/prayers",
       "icon": "leaf"
@@ -72,7 +72,7 @@
     }
   ],
   "closingHeading": "Transforming pain into purpose, peace, and light.",
-  "closingBody": "Whenever you are ready — today, or six months from now — there is a seat here for you.",
+  "closingBody": "Whenever you are ready \u2014 today, or six months from now \u2014 there is a seat here for you.",
   "closingCtaLabel": "Schedule a Session",
   "closingCtaHref": "/schedule"
 }

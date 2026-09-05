@@ -27,12 +27,12 @@ import { cdnUrl, srcSet } from '../lib/img';
           <div class="absolute inset-0 -translate-x-4 translate-y-4 rounded-[2rem] bg-green-100" aria-hidden="true"></div>
           <img
             src={cdnUrl(about.portrait, { w: 640 })}
-            srcset={srcSet(about.portrait, [400, 640, 880])}
+            srcset={srcSet(about.portrait, [480, 720, 1122])}
             sizes="(min-width: 1024px) 36vw, 80vw"
             alt={about.portraitAlt}
-            width="640"
-            height="800"
-            class="relative aspect-4/5 w-full rounded-[2rem] object-cover object-top shadow-lg"
+            width="1122"
+            height="1402"
+            class="relative aspect-4/5 w-full rounded-[2rem] object-cover shadow-lg"
             loading="eager"
             decoding="async"
           />
