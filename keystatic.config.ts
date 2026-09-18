@@ -466,6 +466,13 @@ export default config({
             }),
             url: fields.text({ label: 'Direct link (optional)' }),
             note: fields.text({ label: 'Note', multiline: true }),
+            qr: fields.image({
+              label: 'Payment QR code (optional)',
+              description:
+                'A screenshot of your QR code from the app. Crop it to just the code before uploading.',
+              directory: 'public/images/pay',
+              publicPath: '/images/pay/',
+            }),
             enabled: fields.checkbox({ label: 'Show this option', defaultValue: true }),
           }),
           { label: 'Payment methods', itemLabel: (props) => props.fields.name.value }

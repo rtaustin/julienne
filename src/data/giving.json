@@ -1,13 +1,34 @@
 {
   "eyebrow": "Payment",
   "heading": "Paying for your session",
-  "intro": "Payment is due before your session. Any of the three below is fine — use whichever you already have. Please include your name in the note so I can match it to your appointment.",
+  "intro": "Payment is due before your session. Any of the three below is fine \u2014 use whichever you already have. Please include your name in the note so I can match it to your appointment.",
   "methods": [
-    { "name": "Venmo", "handle": "", "url": "", "note": "Include your name in the payment note.", "enabled": false },
-    { "name": "PayPal", "handle": "", "url": "", "note": "Please send as 'Friends and Family' if you are able.", "enabled": false },
-    { "name": "Zelle", "handle": "", "url": "", "note": "Send through your own bank's app using the email or phone number above.", "enabled": false }
+    {
+      "name": "Venmo",
+      "handle": "Julienne Blackburn",
+      "url": "https://venmo.com/code?user_id=3576558342112963672&created=1789070470",
+      "note": "Opens Venmo straight to Julienne's account. Please put your name in the payment note.",
+      "enabled": true,
+      "qr": ""
+    },
+    {
+      "name": "PayPal",
+      "handle": "Julienne Blackburn",
+      "url": "https://www.paypal.com/qrcodes/p2pqrc/LFVTEAHDY9WGS",
+      "note": "Opens PayPal with the details filled in. If you are able, send as 'Friends and Family'.",
+      "enabled": true,
+      "qr": "/images/pay/qr-paypal.png"
+    },
+    {
+      "name": "Zelle",
+      "handle": "julienned@ymail.com",
+      "url": "",
+      "note": "Zelle works inside your own bank's app \u2014 search for that email address to send.",
+      "enabled": true,
+      "qr": "/images/pay/qr-zelle.png"
+    }
   ],
-  "footnote": "If cost is the only thing standing between you and getting help, say so on the contact page. We will work something out.",
+  "footnote": "Every one of these should show Julienne Blackburn as the recipient before you confirm. If you see any other name, stop and get in touch \u2014 it is worth the extra ten seconds to check. And if cost is the only thing standing between you and getting help, say so on the contact page. We will work something out.",
   "supportHeading": "Supporting the free resources",
-  "supportBody": "The prayers, videos, and the Sunshine page stay free for everyone, always. If you would like to help keep them that way, a gift through any of the methods above — marked 'gift' — goes directly toward that."
+  "supportBody": "The prayers, videos, and the Sunshine page stay free for everyone, always. If you would like to help keep them that way, a gift through any of the methods above \u2014 marked 'gift' \u2014 goes directly toward that."
 }
